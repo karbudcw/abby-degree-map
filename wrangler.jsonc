@@ -1,0 +1,37 @@
+{
+  // Repo layout this expects:
+  //   wrangler.jsonc        <- this file (repo root)
+  //   worker.js             <- the Worker script (repo root)
+  //   public/index.html     <- the app  (served as a static asset)
+  //   public/data.js        <- the data (served as a static asset)
+  //
+  "name": "abby-degree-map",
+  "main": "worker.js",
+  "compatibility_date": "2025-04-01",
+
+  // Static assets: everything in /public is served directly; the Worker handles
+  // /api/* and falls back to index.html for everything else.
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+
+  // KV namespace. Create one in the dashboard (Storage & Databases -> KV),
+  // then paste its Namespace ID below. One namespace stores the plan, the
+  // harvested catalog, and per-course caches (separated by key prefix).
+  "kv_namespaces": [
+    { "binding": "STUDY_PLANS", "id": "PASTE_YOUR_KV_NAMESPACE_ID_HERE" }
+  ],
+
+  // Plain-text settings (safe to commit). Bump CATALOG_CATOID for a new catalog year.
+  "vars": {
+    "CATALOG_CATOID": "12",
+    "CATALOG_NAVOID": "1121",
+    "CATALOG_GE_POID": "11884"
+  },
+
+  // NOTE: REFRESH_TOKEN is a *secret*, not listed here. Add it in the dashboard
+  // after the first deploy (Settings -> Variables and Secrets -> add Secret).
+
+  "observability": { "enabled": true }
+}
