@@ -20,7 +20,7 @@
   // then paste its Namespace ID below. One namespace stores the plan, the
   // harvested catalog, and per-course caches (separated by key prefix).
   "kv_namespaces": [
-    { "binding": "STUDY_PLANS", "id": "PASTE_YOUR_KV_NAMESPACE_ID_HERE" }
+    { "binding": "STUDY_PLANS", "id": "268b05bcf02a4685bcf27132a182a3a0" }
   ],
 
   // Plain-text settings (safe to commit). Bump CATALOG_CATOID for a new catalog year.
