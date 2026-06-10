@@ -9,7 +9,7 @@ window.SDSU_DATA = {
   "advisor": "Jason Tan (jtan@sdsu.edu)",
   "gradFloor": 120,
   "planTotal": 129,
-  "generated": "2026-06-09",
+  "generated": "2026-06-10",
   "programUrl": "https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078"
  },
  "areas": [
@@ -407,7 +407,7 @@ window.SDSU_DATA = {
   },
   "ECON 101": {
    "code": "ECON 101",
-   "title": "Principles of Economics (Micro)",
+   "title": "Principles of Economics (Macro)",
    "units": 3,
    "coid": 89072,
    "reqs": [
@@ -424,7 +424,7 @@ window.SDSU_DATA = {
   },
   "ECON 102": {
    "code": "ECON 102",
-   "title": "Principles of Economics (Macro)",
+   "title": "Principles of Economics (Micro)",
    "units": 3,
    "coid": 89073,
    "reqs": [
