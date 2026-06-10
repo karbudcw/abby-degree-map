@@ -68,12 +68,16 @@ window.SDSU_DATA = {
    "label": "GE Math / Quantitative Reasoning"
   },
   {
-   "key": "aminst",
-   "label": "American Institutions (US Hist, Constitution, CA Gov)"
+   "key": "socbeh",
+   "label": "GE Social & Behavioral Science"
   },
   {
-   "key": "ethnic",
-   "label": "Ethnic Studies (graduation requirement)"
+   "key": "humanities",
+   "label": "GE Humanities"
+  },
+  {
+   "key": "aminst",
+   "label": "American Institutions (US Hist, Constitution, CA Gov)"
   },
   {
    "key": "cdiv",
@@ -118,15 +122,15 @@ window.SDSU_DATA = {
    "units": 1
   },
   {
-   "key": "socbeh",
-   "area": "ldge",
-   "label": "Social & Behavioral Science",
-   "units": 3
-  },
-  {
    "key": "arts",
    "area": "ldge",
    "label": "Arts",
+   "units": 3
+  },
+  {
+   "key": "ethnic",
+   "area": "ldge",
+   "label": "Ethnic Studies (Area F)",
    "units": 3
   },
   {
@@ -368,13 +372,6 @@ window.SDSU_DATA = {
    "area": "regm",
    "label": "Regional course 2 (W. Europe)",
    "units": 3
-  },
-  {
-   "key": "humanities",
-   "area": "ldge",
-   "label": "Humanities",
-   "units": 0,
-   "note": "covered within the 22 LDGE units"
   }
  ],
  "courses": {
@@ -414,10 +411,11 @@ window.SDSU_DATA = {
    "units": 3,
    "coid": 89072,
    "reqs": [
-    "bp_econ1",
+    "bp_econ1"
+   ],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": true,
    "focus": null,
@@ -430,10 +428,11 @@ window.SDSU_DATA = {
    "units": 3,
    "coid": 89073,
    "reqs": [
-    "bp_econ2",
+    "bp_econ2"
+   ],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": true,
    "focus": null,
@@ -512,7 +511,9 @@ window.SDSU_DATA = {
    "reqs": [
     "lp_101"
    ],
-   "overlays": [],
+   "overlays": [
+    "humanities"
+   ],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -527,7 +528,9 @@ window.SDSU_DATA = {
    "reqs": [
     "lp_102"
    ],
-   "overlays": [],
+   "overlays": [
+    "humanities"
+   ],
    "prereq": "SPAN 101",
    "cOrBetter": false,
    "focus": null,
@@ -542,7 +545,9 @@ window.SDSU_DATA = {
    "reqs": [
     "lp_201"
    ],
-   "overlays": [],
+   "overlays": [
+    "humanities"
+   ],
    "prereq": "SPAN 102",
    "cOrBetter": false,
    "focus": null,
@@ -557,7 +562,9 @@ window.SDSU_DATA = {
    "reqs": [
     "lp_202"
    ],
-   "overlays": [],
+   "overlays": [
+    "humanities"
+   ],
    "prereq": "SPAN 201",
    "cOrBetter": false,
    "focus": null,
@@ -572,7 +579,9 @@ window.SDSU_DATA = {
    "reqs": [
     "lp_211"
    ],
-   "overlays": [],
+   "overlays": [
+    "humanities"
+   ],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -587,7 +596,9 @@ window.SDSU_DATA = {
    "reqs": [
     "lp_212"
    ],
-   "overlays": [],
+   "overlays": [
+    "humanities"
+   ],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -635,7 +646,7 @@ window.SDSU_DATA = {
     "rp_we"
    ],
    "overlays": [
-    "socbeh"
+    "humanities"
    ],
    "prereq": null,
    "cOrBetter": false,
@@ -659,6 +670,36 @@ window.SDSU_DATA = {
    "focus": null,
    "desc": null,
    "url": "https://catalog.sdsu.edu/preview_course_nopop.php?catoid=12&coid=89565"
+  },
+  "ECL 158": {
+   "code": "ECL 158",
+   "title": "Introduction to Horror Aesthetics",
+   "units": 3,
+   "coid": null,
+   "reqs": [
+    "arts"
+   ],
+   "overlays": [],
+   "prereq": null,
+   "cOrBetter": false,
+   "focus": null,
+   "desc": null
+  },
+  "AAS 100": {
+   "code": "AAS 100",
+   "title": "Asian American History",
+   "units": 3,
+   "coid": null,
+   "reqs": [
+    "ethnic"
+   ],
+   "overlays": [
+    "aminst"
+   ],
+   "prereq": null,
+   "cOrBetter": false,
+   "focus": null,
+   "desc": null
   },
   "BA 300": {
    "code": "BA 300",
@@ -2181,10 +2222,10 @@ window.SDSU_DATA = {
    "title": "ARP 205",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2196,10 +2237,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
-    "socbeh"
+    "ethnic"
    ],
    "overlays": [
-    "ethnic"
+    "socbeh"
    ],
    "prereq": null,
    "cOrBetter": false,
@@ -2211,10 +2252,10 @@ window.SDSU_DATA = {
    "title": "ANTH 102",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2225,10 +2266,10 @@ window.SDSU_DATA = {
    "title": "ANTH 103",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2239,10 +2280,10 @@ window.SDSU_DATA = {
    "title": "ASIAN 100",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2253,10 +2294,10 @@ window.SDSU_DATA = {
    "title": "CCS 220",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2267,10 +2308,10 @@ window.SDSU_DATA = {
    "title": "FIN 250",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2281,10 +2322,10 @@ window.SDSU_DATA = {
    "title": "GENS 280",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2295,10 +2336,10 @@ window.SDSU_DATA = {
    "title": "GENS 290",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2309,10 +2350,10 @@ window.SDSU_DATA = {
    "title": "GEOG 102",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2323,10 +2364,10 @@ window.SDSU_DATA = {
    "title": "GEOG 106",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2337,10 +2378,10 @@ window.SDSU_DATA = {
    "title": "GEOG 170",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2351,10 +2392,10 @@ window.SDSU_DATA = {
    "title": "GERO 101",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2365,10 +2406,9 @@ window.SDSU_DATA = {
    "title": "HIST 109",
    "units": null,
    "coid": null,
-   "reqs": [
-    "socbeh"
-   ],
+   "reqs": [],
    "overlays": [
+    "socbeh",
     "aminst"
    ],
    "prereq": null,
@@ -2381,10 +2421,9 @@ window.SDSU_DATA = {
    "title": "HIST 110",
    "units": null,
    "coid": null,
-   "reqs": [
-    "socbeh"
-   ],
+   "reqs": [],
    "overlays": [
+    "socbeh",
     "aminst"
    ],
    "prereq": null,
@@ -2397,10 +2436,10 @@ window.SDSU_DATA = {
    "title": "JMS 200",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2411,10 +2450,10 @@ window.SDSU_DATA = {
    "title": "JMS 250",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2425,10 +2464,10 @@ window.SDSU_DATA = {
    "title": "LATAM 101",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2439,10 +2478,10 @@ window.SDSU_DATA = {
    "title": "LING 101",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2453,10 +2492,10 @@ window.SDSU_DATA = {
    "title": "LING 251",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2467,10 +2506,10 @@ window.SDSU_DATA = {
    "title": "MGT 160",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2481,10 +2520,9 @@ window.SDSU_DATA = {
    "title": "POLS 101",
    "units": null,
    "coid": null,
-   "reqs": [
-    "socbeh"
-   ],
+   "reqs": [],
    "overlays": [
+    "socbeh",
     "aminst"
    ],
    "prereq": null,
@@ -2497,10 +2535,9 @@ window.SDSU_DATA = {
    "title": "POLS 102",
    "units": null,
    "coid": null,
-   "reqs": [
-    "socbeh"
-   ],
+   "reqs": [],
    "overlays": [
+    "socbeh",
     "aminst"
    ],
    "prereq": null,
@@ -2513,10 +2550,10 @@ window.SDSU_DATA = {
    "title": "POLS 103",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2527,10 +2564,10 @@ window.SDSU_DATA = {
    "title": "POLS 104",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2541,10 +2578,10 @@ window.SDSU_DATA = {
    "title": "PSY 101",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2555,10 +2592,10 @@ window.SDSU_DATA = {
    "title": "SCI 250",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2569,10 +2606,10 @@ window.SDSU_DATA = {
    "title": "TE 250",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2583,10 +2620,10 @@ window.SDSU_DATA = {
    "title": "SOC 101",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2597,10 +2634,10 @@ window.SDSU_DATA = {
    "title": "SOC 102",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2611,10 +2648,10 @@ window.SDSU_DATA = {
    "title": "SLHS 106",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2625,10 +2662,10 @@ window.SDSU_DATA = {
    "title": "SLHS 150",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2639,10 +2676,10 @@ window.SDSU_DATA = {
    "title": "SLHS 222",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2653,10 +2690,10 @@ window.SDSU_DATA = {
    "title": "WMNST 103",
    "units": null,
    "coid": null,
-   "reqs": [
+   "reqs": [],
+   "overlays": [
     "socbeh"
    ],
-   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2933,10 +2970,10 @@ window.SDSU_DATA = {
    "title": "AFRAS 240",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2947,10 +2984,10 @@ window.SDSU_DATA = {
    "title": "AFRAS 260",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -2961,10 +2998,10 @@ window.SDSU_DATA = {
    "title": "AMIND 210",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4163,10 +4200,11 @@ window.SDSU_DATA = {
    "title": "AFRAS 170A",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
-    "aminst",
+   "reqs": [
     "ethnic"
+   ],
+   "overlays": [
+    "aminst"
    ],
    "prereq": null,
    "cOrBetter": false,
@@ -4178,10 +4216,11 @@ window.SDSU_DATA = {
    "title": "AFRAS 170B",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
-    "aminst",
+   "reqs": [
     "ethnic"
+   ],
+   "overlays": [
+    "aminst"
    ],
    "prereq": null,
    "cOrBetter": false,
@@ -4193,10 +4232,11 @@ window.SDSU_DATA = {
    "title": "AMIND 140",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
-    "aminst",
+   "reqs": [
     "ethnic"
+   ],
+   "overlays": [
+    "aminst"
    ],
    "prereq": null,
    "cOrBetter": false,
@@ -4208,10 +4248,11 @@ window.SDSU_DATA = {
    "title": "AMIND 141",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
-    "aminst",
+   "reqs": [
     "ethnic"
+   ],
+   "overlays": [
+    "aminst"
    ],
    "prereq": null,
    "cOrBetter": false,
@@ -4223,10 +4264,11 @@ window.SDSU_DATA = {
    "title": "CCS 120A",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
-    "aminst",
+   "reqs": [
     "ethnic"
+   ],
+   "overlays": [
+    "aminst"
    ],
    "prereq": null,
    "cOrBetter": false,
@@ -4238,10 +4280,11 @@ window.SDSU_DATA = {
    "title": "CCS 120B",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
-    "aminst",
+   "reqs": [
     "ethnic"
+   ],
+   "overlays": [
+    "aminst"
    ],
    "prereq": null,
    "cOrBetter": false,
@@ -4253,10 +4296,11 @@ window.SDSU_DATA = {
    "title": "CCS 141A",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
-    "aminst",
+   "reqs": [
     "ethnic"
+   ],
+   "overlays": [
+    "aminst"
    ],
    "prereq": null,
    "cOrBetter": false,
@@ -4268,10 +4312,11 @@ window.SDSU_DATA = {
    "title": "CCS 141B",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
-    "aminst",
+   "reqs": [
     "ethnic"
+   ],
+   "overlays": [
+    "aminst"
    ],
    "prereq": null,
    "cOrBetter": false,
@@ -4519,10 +4564,10 @@ window.SDSU_DATA = {
    "title": "AFRAS 102",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4533,10 +4578,10 @@ window.SDSU_DATA = {
    "title": "AFRAS 327",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4547,10 +4592,10 @@ window.SDSU_DATA = {
    "title": "AFRAS 331",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4561,10 +4606,10 @@ window.SDSU_DATA = {
    "title": "AFRAS 332",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4575,10 +4620,10 @@ window.SDSU_DATA = {
    "title": "AFRAS 351",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4589,10 +4634,10 @@ window.SDSU_DATA = {
    "title": "RELS 351",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4603,10 +4648,10 @@ window.SDSU_DATA = {
    "title": "AFRAS 363",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4617,10 +4662,10 @@ window.SDSU_DATA = {
    "title": "LING 363",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4632,11 +4677,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4647,10 +4691,10 @@ window.SDSU_DATA = {
    "title": "AFRAS 422",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4661,10 +4705,10 @@ window.SDSU_DATA = {
    "title": "AFRAS 423",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4676,11 +4720,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4692,11 +4735,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4707,10 +4749,10 @@ window.SDSU_DATA = {
    "title": "AFRAS 471",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4722,11 +4764,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4737,10 +4778,10 @@ window.SDSU_DATA = {
    "title": "AFRAS 476",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4751,10 +4792,10 @@ window.SDSU_DATA = {
    "title": "AMIND 110",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4766,11 +4807,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4782,11 +4822,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_soc"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4797,10 +4836,10 @@ window.SDSU_DATA = {
    "title": "AMIND 331",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4811,10 +4850,10 @@ window.SDSU_DATA = {
    "title": "POLS 331",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4825,10 +4864,10 @@ window.SDSU_DATA = {
    "title": "AMIND 370",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4839,10 +4878,10 @@ window.SDSU_DATA = {
    "title": "HTM 370",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4853,10 +4892,10 @@ window.SDSU_DATA = {
    "title": "AMIND 429",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4868,11 +4907,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4883,10 +4921,10 @@ window.SDSU_DATA = {
    "title": "AMIND 435",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4898,11 +4936,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4914,11 +4951,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_soc"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4930,11 +4966,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_soc"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4946,11 +4981,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_soc"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4962,11 +4996,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_soc"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4978,11 +5011,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_soc"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -4994,11 +5026,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_soc"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5009,10 +5040,10 @@ window.SDSU_DATA = {
    "title": "AMIND 485",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5023,10 +5054,10 @@ window.SDSU_DATA = {
    "title": "ASIAN 103",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5037,10 +5068,10 @@ window.SDSU_DATA = {
    "title": "ASIAN 422",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5051,10 +5082,10 @@ window.SDSU_DATA = {
    "title": "HIST 422",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5065,10 +5096,10 @@ window.SDSU_DATA = {
    "title": "ASIAN 460",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5079,10 +5110,10 @@ window.SDSU_DATA = {
    "title": "FILIP 460",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5093,10 +5124,10 @@ window.SDSU_DATA = {
    "title": "CCS 100",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5107,10 +5138,10 @@ window.SDSU_DATA = {
    "title": "CCS 110",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5121,10 +5152,10 @@ window.SDSU_DATA = {
    "title": "CCS 150",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5135,10 +5166,10 @@ window.SDSU_DATA = {
    "title": "CCS 275",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5149,10 +5180,10 @@ window.SDSU_DATA = {
    "title": "CCS 280",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5164,11 +5195,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_soc"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5180,11 +5210,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_soc"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5195,10 +5224,10 @@ window.SDSU_DATA = {
    "title": "CCS 306",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5210,11 +5239,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5226,11 +5254,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5242,11 +5269,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_soc"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5257,10 +5283,10 @@ window.SDSU_DATA = {
    "title": "CCS 340A",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5271,10 +5297,10 @@ window.SDSU_DATA = {
    "title": "CCS 340B",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5286,11 +5312,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5302,11 +5327,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5318,11 +5342,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_soc"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5334,11 +5357,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_soc"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5350,11 +5372,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5366,11 +5387,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5382,11 +5402,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5398,11 +5417,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5414,11 +5432,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5430,11 +5447,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5445,10 +5461,10 @@ window.SDSU_DATA = {
    "title": "CCS 405",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5460,11 +5476,10 @@ window.SDSU_DATA = {
    "units": null,
    "coid": null,
    "reqs": [
+    "ethnic",
     "expl_hum"
    ],
-   "overlays": [
-    "ethnic"
-   ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -5475,10 +5490,10 @@ window.SDSU_DATA = {
    "title": "CCS 580",
    "units": null,
    "coid": null,
-   "reqs": [],
-   "overlays": [
+   "reqs": [
     "ethnic"
    ],
+   "overlays": [],
    "prereq": null,
    "cOrBetter": false,
    "focus": null,
@@ -11250,9 +11265,9 @@ window.SDSU_DATA = {
     },
     {
      "code": null,
-     "req": "socbeh",
+     "req": "ethnic",
      "units": 3,
-     "label": "Social & Behavioral Sci (+ Am. Institutions / Ethnic Studies)"
+     "label": "Ethnic Studies (+ American Institutions)"
     },
     {
      "code": null,
