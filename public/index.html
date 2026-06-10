@@ -458,7 +458,7 @@ function renderDash(){
         <span class="bar-val" style="${c.totEarned>0?'color:var(--ok);font-weight:700':''}">${c.totEarned}</span>
       </div>
     </div>
-    <div class="dash-top status ${met?'ok':'short'}">${met?'✓ all courses planned':'+(planTotal-c.totPlanned)+' units still to plan'}${c.totEarned>0?' · '+c.totEarned+' units completed':''}</div>`;
+    <div class="dash-top status ${met?'ok':'short'}">${met?'✓ All courses planned':(planTotal-c.totPlanned)+' units still to plan'}${c.totEarned>0?' · '+c.totEarned+' completed':''}</div>`;
   document.getElementById("cards").innerHTML=D.areas.map(a=>{
     const p=c.planned[a.key],e=c.earned[a.key]||0,met=p>=a.target,pw=Math.min(100,p/a.target*100),ew=Math.min(100,e/a.target*100);
     return `<div class="cat ${met?'met':''}">
