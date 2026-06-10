@@ -59,7 +59,7 @@ header.mast{padding:30px 20px 8px;max-width:1240px;margin:0 auto}
 .cat .nm{font-weight:600;font-size:13px;color:var(--ink)}
 .cat .vu{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
 .cat .vu b{color:var(--ink)}
-.cat .bar{height:6px;border-radius:999px;background:var(--line-soft);overflow:hidden;margin-top:9px}
+.cat .bar{height:6px;border-radius:999px;background:var(--line-soft);overflow:hidden;margin-top:9px}.bar-row .bar{margin-top:0}
 .cat .bar i{display:block;height:100%;border-radius:999px}
 .cat .status{font-size:11.5px;margin-top:7px;font-weight:600}
 .cat.met .status{color:var(--ok)} .cat .status.short{color:var(--warn)}
@@ -98,8 +98,8 @@ section.block{background:var(--paper);border:1px solid var(--line);border-radius
 .slot.empty{border-style:dashed;background:transparent}
 .slot.elective{background:#f6f4ef}
 /* Choice slot: amber left-border when slot req has multiple eligible courses */
-.slot.choice-slot{border-left:3px solid var(--gold-deep);background:#fffbf2}
-.slot.choice-slot.empty{border-left:3px solid var(--gold-deep)}
+.slot.choice-slot{border-left:3px solid #3a7d52;background:#f2fbf5}
+.slot.choice-slot.empty{border-left:3px solid #3a7d52}
 /* Done/completed slot */
 .slot.done-slot{opacity:.72}
 .slot.done-slot .code{text-decoration:line-through;color:var(--ok)}
@@ -131,8 +131,8 @@ section.block{background:var(--paper);border:1px solid var(--line);border-radius
 .pill.overlay{background:#eef3f8;color:#3c5673;border-color:#d7e2ee}
 .pill.none{background:#f0ece3;color:var(--muted)}
 .pill.target{background:transparent;border:1px dashed var(--muted2);color:var(--muted)}
-.pill.choice-link{background:#fff8e6;color:var(--gold-deep);border-color:#e8c96a;text-decoration:none;cursor:pointer}
-.pill.choice-link:hover{background:#fff0c0}
+.pill.choice-link{background:#eef7f1;color:#2e6b43;border-color:#a8d5b5;text-decoration:none;cursor:pointer}
+.pill.choice-link:hover{background:#d8f0e2}
 .slot-foot{display:flex;align-items:center;gap:8px;margin-top:8px}
 .flag{font-size:10px;border-radius:5px;padding:1px 6px;font-weight:600}
 .flag.c{background:var(--ok-bg);color:var(--ok)}
@@ -145,8 +145,7 @@ section.block{background:var(--paper);border:1px solid var(--line);border-radius
 .cl-intro{color:var(--muted);max-width:70ch;margin:4px 0 18px}
 .cl-dash{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:24px}
 .cl-dash table{width:100%;border-collapse:collapse}
-.cl-dash th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);text-align:left;padding:11px 16px;background:#fbf3e4}
-.cl-dash td{padding:11px 16px;border-top:1px solid var(--line-soft);vertical-align:middle}
+.cl-dash th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);text-align:left;padding:9px 12px;background:#fbf3e4}.cl-dash td{padding:9px 12px;border-top:1px solid var(--line-soft);vertical-align:middle}
 .cl-dash td.c-nm{font-weight:600}
 .cl-dash td.c-v{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
 .cl-dash td.c-v b{color:var(--ink)}
@@ -177,6 +176,10 @@ section.block{background:var(--paper);border:1px solid var(--line);border-radius
 .cat .earned-row{display:flex;align-items:center;gap:6px;margin-top:4px}
 .cat .earned-badge{font-size:11px;font-weight:700;color:var(--ok);background:var(--ok-bg);border-radius:4px;padding:1px 6px}
 .cat .earned-label{font-size:11px;color:var(--muted)}
+.bar-stack{display:flex;flex-direction:column;gap:4px;margin-top:8px}
+.bar-row{display:grid;grid-template-columns:40px 1fr 22px;align-items:center;gap:5px}
+.bar-lbl{font-size:10px;color:var(--muted2);font-weight:600;text-align:right;white-space:nowrap}
+.bar-val{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
 
 footer{max-width:1240px;margin:10px auto 0;padding:0 20px;color:var(--muted2);font-size:11.5px;text-align:center}
 footer b{color:var(--scarlet)}
@@ -438,10 +441,23 @@ function renderDash(){
   document.getElementById("cards").innerHTML=D.areas.map(a=>{
     const p=c.planned[a.key],e=c.earned[a.key]||0,met=p>=a.target,pw=Math.min(100,p/a.target*100),ew=Math.min(100,e/a.target*100);
     return `<div class="cat ${met?'met':''}">
-      <div class="ct"><span class="nm">${a.label}</span><span class="vu"><b>${p}</b>/${a.target}</span></div>
-      <div class="bar" title="${p} planned · ${e} completed"><i style="width:${pw}%;background:${met?'var(--ok)':a.color}"></i></div>
-      <div class="status ${met?'':'short'}">${met?'✓ on track':(a.target-p)+' units to go'}</div>
-      ${e>0?`<div class="earned-row"><span class="earned-badge">✓ ${e}</span><span class="earned-label">completed</span></div>`:''}
+      <div class="ct">
+        <span class="nm">${a.label}</span>
+        <span class="vu"><b>${p}</b>/${a.target}</span>
+      </div>
+      <div class="bar-stack">
+        <div class="bar-row">
+          <span class="bar-lbl">Planned</span>
+          <div class="bar" title="${p}/${a.target} planned"><i style="width:${pw}%;background:${met?'var(--ok)':a.color}"></i></div>
+          <span class="bar-val">${p}</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lbl">Done</span>
+          <div class="bar" title="${e} completed"><i style="width:${ew}%;background:var(--ok);opacity:.75"></i></div>
+          <span class="bar-val" style="${e>0?'color:var(--ok);font-weight:700':''}">${e}</span>
+        </div>
+      </div>
+      <div class="status ${met?'':'short'}">${met?'✓ on track':(a.target-p)+' to go'}</div>
     </div>`;
   }).join("");
   document.getElementById("dashFoot").innerHTML = c.electives ? `Plus ${c.electives} free-elective units (count toward the 120 total).` : '';
@@ -507,19 +523,20 @@ function isChoiceReq(reqKey){
 }
 // GE catalog links for each choice requirement key
 const GE_CATALOG_URLS={
-  "oral":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaA1",
-  "written":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaA2",
-  "critical":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaA3",
-  "physci":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaB1",
-  "lifesci":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaB2",
-  "lab":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaB3",
-  "arts":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaC1",
-  "ethnic":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaF",
+  // Links from Jason Tan's advisor study plan spreadsheet (updated to 2026-27 catalog)
+  "oral":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
+  "written":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
+  "critical":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
+  "physci":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
+  "lifesci":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
+  "lab":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
+  "arts":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
+  "ethnic":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
   "rp_we":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
-  "gwar":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#UDGE",
-  "expl_nat":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#ExplNat",
-  "expl_soc":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#ExplSoc",
-  "expl_hum":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#ExplHum",
+  "gwar":"https://catalog.sdsu.edu/content.php?catoid=12&navoid=1121",
+  "expl_nat":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
+  "expl_soc":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
+  "expl_hum":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
   "focus1":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
   "focus2":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
   "lm_1":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
@@ -637,13 +654,14 @@ function bindTerms(){
 /* ---------- checklist view (dynamic) ---------- */
 function renderChecklist(){
   const c=compute();
-  let dash=`<tr><th>Category</th><th>Planned</th><th>Completed</th><th>Required</th><th style="text-align:right">Status</th></tr>`;
-  D.areas.forEach(a=>{ const p=c.planned[a.key],e=c.earned[a.key]||0,met=p>=a.target,done=e>=a.target;
+  let dash=`<tr><th>Category</th><th>Required</th><th>Planned</th><th>Completed</th><th style="text-align:right">Planned</th><th style="text-align:right">Completed</th></tr>`;
+  D.areas.forEach(a=>{ const p=c.planned[a.key],e=c.earned[a.key]||0,met=p>=a.target,done=e>=a.target,toGo=Math.max(0,a.target-e);
     dash+=`<tr><td class="c-nm">${a.label}</td>
-      <td class="c-v"><b>${p}</b> units</td>
-      <td class="c-v"><b style="${e>0?'color:var(--ok)':''}">${e}</b> units${e>0&&done?` <span class="earned">✓</span>`:''}</td>
-      <td class="c-v">${a.target} units</td>
-      <td class="c-st ${met?'yes':'no'}">${met?'✓ met':(a.target-p)+' to go'}</td></tr>`; });
+      <td class="c-v">${a.target}</td>
+      <td class="c-v"><b>${p}</b></td>
+      <td class="c-v"><b style="${e>0?'color:var(--ok)':''}">${e}</b></td>
+      <td class="c-st ${met?'yes':'no'}">${met?'✓':'○ '+(a.target-p)+' to go'}</td>
+      <td class="c-st ${done?'yes':'no'}">${done?'✓':'○ '+toGo+' to go'}</td></tr>`; });
   document.getElementById("clDash").innerHTML=dash;
   let body="";
   D.areas.forEach(a=>{ const reqs=D.reqs.filter(r=>r.area===a.key); const p=c.planned[a.key];const e=c.earned[a.key]||0;
