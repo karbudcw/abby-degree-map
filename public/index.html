@@ -44,14 +44,15 @@ header.mast{padding:30px 20px 8px;max-width:1240px;margin:0 auto}
 .view.on{display:block}
 
 .dash{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px 22px;margin:18px 0 24px}
-.dash .total-row{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:6px}
-.total .big{font-family:'Fraunces';font-size:46px;font-weight:600;line-height:.95;color:var(--ink)}
-.total .big.ok{color:var(--ok)}
-.total .cap{font-size:13px;color:var(--muted);margin-top:2px}
-.total .cap b{color:var(--ink)}
-.totbar{flex:1;min-width:240px;height:12px;border-radius:999px;background:var(--line-soft);overflow:hidden;position:relative;margin-bottom:6px}
-.totbar i{display:block;height:100%;background:linear-gradient(90deg,var(--scarlet),var(--scarlet-deep))}
-.totbar .floor{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);opacity:.45}
+.dash-summary{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px}
+.dash-summary .ds-label{font-family:'Fraunces';font-size:20px;font-weight:600;color:var(--ink)}
+.dash-summary .ds-frac{font-size:15px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.dash-summary .ds-frac b{color:var(--ink);font-size:18px}
+.dash-summary .ds-frac .ds-grad{font-size:11px;color:var(--muted);font-weight:400;margin-left:4px}
+.dash-top{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:4px}
+.dash-top .bar-stack{margin-top:6px}
+.dash-top .status{font-size:12px;margin-top:8px;font-weight:600}
+.dash-top .status.ok{color:var(--ok)} .dash-top .status.short{color:var(--warn)}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
 .cat{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fffdf9}
 .cat.met{border-color:#cfe6d8;background:#f6fbf8}
@@ -242,12 +243,7 @@ footer b{color:var(--scarlet)}
   <!-- ============ DEGREE PLANNER VIEW ============ -->
   <div class="view on" id="viewPlanner">
     <div class="dash">
-      <div class="total-row">
-        <div class="total"><div class="big" id="totBig">0</div>
-          <div class="cap" id="totCap">units planned</div>
-          <div class="cap" id="totEarnedCap" style="margin-top:3px;color:var(--ok);font-weight:600;display:none"></div></div>
-        <div class="totbar"><i id="totBar" style="width:0"></i><span class="floor" id="floorMark"></span></div>
-      </div>
+      <div class="dash-top" id="dashTop"></div>
       <div class="cards" id="cards"></div>
       <div class="foot" id="dashFoot"></div>
     </div>
@@ -437,14 +433,32 @@ function renderMast(){ document.getElementById("masttags").innerHTML=[`RedID ${D
 
 function renderDash(){
   const c=compute();
-  document.getElementById("totBig").textContent=c.totPlanned;
-  document.getElementById("totBig").classList.toggle("ok",c.totPlanned>=D.meta.gradFloor);
-  document.getElementById("totCap").innerHTML=`units planned · <b>${D.meta.gradFloor}</b> to graduate`;
-  const earnedCap=document.getElementById("totEarnedCap");
-  if(c.totEarned>0){earnedCap.textContent=`${c.totEarned} units completed`;earnedCap.style.display="";}
-  else earnedCap.style.display="none";
-  document.getElementById("totBar").style.width=Math.min(100,c.totPlanned/D.meta.planTotal*100)+"%";
-  document.getElementById("floorMark").style.left=(D.meta.gradFloor/D.meta.planTotal*100)+"%";
+  const planTotal=D.meta.planTotal, gradFloor=D.meta.gradFloor;
+  const pw=Math.min(100,c.totPlanned/planTotal*100);
+  const ew=Math.min(100,c.totEarned/planTotal*100);
+  const met=c.totPlanned>=gradFloor, allDone=c.totEarned>=gradFloor;
+  document.getElementById("dashTop").innerHTML=`
+    <div class="dash-summary">
+      <span class="ds-label">Total Progress</span>
+      <span class="ds-frac"><b>${c.totPlanned}</b>/${planTotal}<span class="ds-grad">· ${gradFloor} to graduate</span></span>
+    </div>
+    <div class="bar-stack">
+      <div class="bar-row">
+        <span class="bar-lbl">Planned</span>
+        <div class="bar" style="height:8px;border-radius:999px;background:var(--line-soft);overflow:hidden" title="${c.totPlanned}/${planTotal} planned">
+          <i style="display:block;height:100%;border-radius:999px;width:${pw}%;background:${met?'var(--ok)':'var(--scarlet-deep)'}"></i>
+        </div>
+        <span class="bar-val">${c.totPlanned}</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-lbl">Done</span>
+        <div class="bar" style="height:8px;border-radius:999px;background:var(--line-soft);overflow:hidden" title="${c.totEarned} units completed">
+          <i style="display:block;height:100%;border-radius:999px;width:${ew}%;background:var(--ok);opacity:.8"></i>
+        </div>
+        <span class="bar-val" style="${c.totEarned>0?'color:var(--ok);font-weight:700':''}">${c.totEarned}</span>
+      </div>
+    </div>
+    <div class="dash-top status ${met?'ok':'short'}">${met?'✓ all courses planned':'+(planTotal-c.totPlanned)+' units still to plan'}${c.totEarned>0?' · '+c.totEarned+' units completed':''}</div>`;
   document.getElementById("cards").innerHTML=D.areas.map(a=>{
     const p=c.planned[a.key],e=c.earned[a.key]||0,met=p>=a.target,pw=Math.min(100,p/a.target*100),ew=Math.min(100,e/a.target*100);
     return `<div class="cat ${met?'met':''}">
