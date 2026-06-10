@@ -94,14 +94,30 @@ section.block{background:var(--paper);border:1px solid var(--line);border-radius
 .mstone::before{content:"\25C6";font-size:9px;margin-top:3px}
 .slots{padding:10px 10px 4px;display:flex;flex-direction:column;gap:8px;flex:1}
 
-.slot{border:1px solid var(--line-soft);border-radius:10px;padding:9px 10px;background:#fffdf9}
+.slot{border:1px solid var(--line-soft);border-radius:10px;padding:9px 10px;background:#fffdf9;transition:box-shadow .12s,opacity .12s}
 .slot.empty{border-style:dashed;background:transparent}
 .slot.elective{background:#f6f4ef}
+/* Choice slot: amber left-border when slot req has multiple eligible courses */
+.slot.choice-slot{border-left:3px solid var(--gold-deep);background:#fffbf2}
+.slot.choice-slot.empty{border-left:3px solid var(--gold-deep)}
+/* Done/completed slot */
+.slot.done-slot{opacity:.72}
+.slot.done-slot .code{text-decoration:line-through;color:var(--ok)}
+.slot.done-slot a.code{text-decoration:line-through;color:var(--ok)}
+/* Drag and drop */
+.slot[draggable="true"]{cursor:grab}
+.slot[draggable="true"]:active{cursor:grabbing}
+.slot.dragging{opacity:.35;box-shadow:none}
+.slots.drag-over{background:rgba(166,25,46,.04);border-radius:10px;outline:2px dashed var(--scarlet);outline-offset:2px}
+.slot.drag-target{border-color:var(--scarlet);box-shadow:0 0 0 2px rgba(166,25,46,.25)}
+.drag-handle{font-size:13px;color:var(--muted2);cursor:grab;flex:none;padding:1px 2px;margin-top:3px;opacity:.5;user-select:none;line-height:1}
+.drag-handle:hover{opacity:1;color:var(--muted)}
 .slot-top{display:flex;gap:8px;align-items:flex-start}
 .slot .dot{width:9px;height:9px;border-radius:50%;flex:none;margin-top:5px}
 .slot .pickwrap{flex:1;min-width:0;cursor:pointer}
 .slot .code{font-weight:700;font-size:13.5px}
-.slot a.code{text-decoration:none}
+.slot a.code{text-decoration:none;color:var(--scarlet)}
+.slot a.code:hover{text-decoration:underline}
 .slot .code.placeholder{color:var(--muted);font-weight:600}
 .slot .ttl{font-size:12px;color:var(--muted);line-height:1.3;display:block;margin-top:1px}
 .slot .un{font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700;white-space:nowrap;margin-top:2px}
@@ -115,11 +131,14 @@ section.block{background:var(--paper);border:1px solid var(--line);border-radius
 .pill.overlay{background:#eef3f8;color:#3c5673;border-color:#d7e2ee}
 .pill.none{background:#f0ece3;color:var(--muted)}
 .pill.target{background:transparent;border:1px dashed var(--muted2);color:var(--muted)}
+.pill.choice-link{background:#fff8e6;color:var(--gold-deep);border-color:#e8c96a;text-decoration:none;cursor:pointer}
+.pill.choice-link:hover{background:#fff0c0}
 .slot-foot{display:flex;align-items:center;gap:8px;margin-top:8px}
 .flag{font-size:10px;border-radius:5px;padding:1px 6px;font-weight:600}
 .flag.c{background:var(--ok-bg);color:var(--ok)}
 .flag.pre{background:var(--warn-bg);color:var(--warn);cursor:help}
-.slot .done{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);cursor:pointer;user-select:none}
+.slot .done-lbl{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);cursor:pointer;user-select:none}
+.slot .done-lbl input[type=checkbox]:checked+span{color:var(--ok);font-weight:600}
 .addslot{border:1px dashed var(--line);border-radius:9px;background:transparent;color:var(--muted);font-family:'Archivo';font-size:12.5px;font-weight:600;padding:8px;cursor:pointer;margin:2px 10px 12px}
 .addslot:hover{border-color:var(--scarlet);color:var(--scarlet)}
 
@@ -131,25 +150,33 @@ section.block{background:var(--paper);border:1px solid var(--line);border-radius
 .cl-dash td.c-nm{font-weight:600}
 .cl-dash td.c-v{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
 .cl-dash td.c-v b{color:var(--ink)}
+.cl-dash td.c-v .earned{display:inline-block;margin-left:4px;font-size:11px;background:var(--ok-bg);color:var(--ok);border-radius:4px;padding:0 5px;font-weight:700}
 .cl-dash td.c-st{text-align:right;white-space:nowrap;font-weight:600}
 .cl-dash .yes{color:var(--ok)} .cl-dash .no{color:var(--warn)}
 .cl-sec{margin-bottom:22px}
 .cl-h{display:flex;align-items:baseline;gap:10px;border-bottom:2px solid var(--scarlet);padding-bottom:5px;margin-bottom:2px}
 .cl-h h2{font-family:'Fraunces';font-size:18px;font-weight:600;margin:0}
 .cl-h .u{margin-left:auto;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
-.cl-row{display:grid;grid-template-columns:34% 1fr auto;gap:10px;align-items:center;padding:8px 4px;border-bottom:1px solid var(--line-soft)}
-.cl-row .rq{font-weight:600}
+.cl-row{display:grid;grid-template-columns:32% 1fr auto;gap:10px;align-items:start;padding:8px 4px;border-bottom:1px solid var(--line-soft)}
+.cl-row .rq{font-weight:600;padding-top:1px}
 .cl-row .cs .code{font-weight:700}
 .cl-row .cs .tt{color:var(--muted);font-size:12.5px}
-.cl-row .meta{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.cl-row .meta{display:flex;align-items:center;gap:6px;white-space:nowrap;flex-wrap:wrap;justify-content:flex-end}
 .termpill{font-size:10.5px;font-weight:600;background:#efe7d6;color:#6b5d45;border-radius:999px;padding:2px 9px}
 .termpill.tbd{background:transparent;border:1px dashed var(--muted2);color:var(--muted)}
+.ck-group{display:flex;align-items:center;gap:3px}
+.ck-label{font-size:9.5px;color:var(--muted2);letter-spacing:.04em;text-transform:uppercase}
 .ck{font-size:15px;font-weight:700}
 .ck.yes{color:var(--ok)} .ck.no{color:var(--muted2)}
+.ck-sep{color:var(--line);font-size:11px;margin:0 2px}
 .cl-note{font-size:11.5px;color:var(--warn);margin-top:3px}
 .cl-callout{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:10px;padding:12px 15px;margin-top:14px}
 .cl-callout h3{font-family:'Fraunces';font-size:15px;margin:0 0 5px}
 .cl-callout ul{margin:4px 0 0;padding-left:18px} .cl-callout li{margin:3px 0;font-size:13px}
+/* Earned progress in category cards */
+.cat .earned-row{display:flex;align-items:center;gap:6px;margin-top:4px}
+.cat .earned-badge{font-size:11px;font-weight:700;color:var(--ok);background:var(--ok-bg);border-radius:4px;padding:1px 6px}
+.cat .earned-label{font-size:11px;color:var(--muted)}
 
 footer{max-width:1240px;margin:10px auto 0;padding:0 20px;color:var(--muted2);font-size:11.5px;text-align:center}
 footer b{color:var(--scarlet)}
@@ -213,7 +240,8 @@ footer b{color:var(--scarlet)}
     <div class="dash">
       <div class="total-row">
         <div class="total"><div class="big" id="totBig">0</div>
-          <div class="cap" id="totCap">units planned</div></div>
+          <div class="cap" id="totCap">units planned</div>
+          <div class="cap" id="totEarnedCap" style="margin-top:3px;color:var(--ok);font-weight:600;display:none"></div></div>
         <div class="totbar"><i id="totBar" style="width:0"></i><span class="floor" id="floorMark"></span></div>
       </div>
       <div class="cards" id="cards"></div>
@@ -271,6 +299,10 @@ const reqByKey=Object.fromEntries(D.reqs.map(r=>[r.key,r]));
 const areaByKey=Object.fromEntries(D.areas.map(a=>[a.key,a]));
 const overlayByKey=Object.fromEntries(D.overlays.map(o=>[o.key,o]));
 const PLAN_ID="abby-ib";
+// Immediately set url for all courses that have a coid in data.js
+// (courseUrl() needs catoid from D.meta which is already loaded)
+// This runs before courseUrl() is defined, so we inline it here:
+(()=>{ const cu=(c)=>`https://catalog.sdsu.edu/preview_course_nopop.php?catoid=${D.meta.catoid}&coid=${c}`; for(const code in byCode){ const c=byCode[code]; if(c.coid&&!c.url) c.url=cu(c.coid); } })();
 let state=null, saveTimer=null, picker={termId:null,slotIdx:null,isTransfer:false};
 
 /* ---------- state ---------- */
@@ -292,7 +324,9 @@ function load(){
   fetchState().then(s=>{ state=s||seedState(); afterLoad(); })
               .catch(()=>{ state=localLoad()||seedState(); afterLoad(); });
 }
-function afterLoad(){ render(); loadCatalog(); }
+function afterLoad(){ // backfill urls from coids already in byCode (data.js)
+  for(const code in byCode){ const c=byCode[code]; if(c.coid&&!c.url) c.url=courseUrl(c.coid); }
+  render(); loadCatalog(); }
 function save(){ clearTimeout(saveTimer); saveTimer=setTimeout(()=>{
   localSave(state);
   fetch(`/api/state/${PLAN_ID}`,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(state)})
@@ -313,10 +347,13 @@ function mergeCatalog(cat){
       if((!c.title||c.title===c.code)&&info.title)c.title=info.title;
       if(c.units==null&&info.units!=null)c.units=info.units;
       if(!c.coid&&info.coid){c.coid=info.coid;c.url=courseUrl(info.coid);}
+      if(!c.url&&c.coid)c.url=courseUrl(c.coid);
       if(!c.desc&&info.desc)c.desc=info.desc;
       (info.reqs||[]).forEach(r=>{if(!c.reqs.includes(r))c.reqs.push(r);});
       (info.overlays||[]).forEach(o=>{if(!c.overlays.includes(o))c.overlays.push(o);});
     } }
+  // Back-fill url for all courses that have a coid
+  for(const code in byCode){ const c=byCode[code]; if(c.coid&&!c.url) c.url=courseUrl(c.coid); }
 }
 function loadCatalog(){
   fetch('/api/catalog').then(r=>r.ok?r.json():null).then(cat=>{
@@ -327,7 +364,9 @@ function loadCatalog(){
   }).catch(()=>{});
 }
 const _detailAsked={};
-function ensureDetail(code){ const c=byCode[code]; if(!c||!c.coid) return; if(c.desc&&c.units!=null) return; if(_detailAsked[c.coid]) return;
+function ensureDetail(code){ const c=byCode[code]; if(!c||!c.coid) return;
+  if(!c.url) c.url=courseUrl(c.coid); // ensure url always set when coid known
+  if(c.desc&&c.units!=null) return; if(_detailAsked[c.coid]) return;
   _detailAsked[c.coid]=true;
   fetch(`/api/course/${c.coid}`).then(r=>r.ok?r.json():null).then(d=>{ if(!d)return; let ch=false;
     if(c.units==null&&d.units!=null){c.units=d.units;ch=true;} if(!c.desc&&d.desc){c.desc=d.desc;ch=true;}
@@ -367,16 +406,19 @@ function compute(){
   const planned={},earned={}; D.areas.forEach(a=>{planned[a.key]=0;earned[a.key]=0;});
   let totPlanned=0,totEarned=0,electives=0;
   const reqCourse={}, overlayCourse={}, termOf={};
+  const earnedReqs={}, earnedOverlays={};
   const visit=(s,term)=>{ const u=slotUnits(s)||0; const ar=slotArea(s);
     totPlanned+=u; if(s.done)totEarned+=u;
     if(ar){planned[ar]+=u; if(s.done)earned[ar]+=u;} else if(u>0 && s.code) electives+=u;
-    if(s.req){ reqCourse[s.req]={code:s.code,label:s.label,term}; if(term)termOf[s.req]=term; }
+    if(s.req){ reqCourse[s.req]={code:s.code,label:s.label,term}; if(term)termOf[s.req]=term;
+      if(s.done&&s.code) earnedReqs[s.req]=true; }
     const c=s.code?byCode[s.code]:null;
-    if(c){ if(term)termOf[s.code]=term; (c.overlays||[]).forEach(o=>{ if(!overlayCourse[o]) overlayCourse[o]={code:s.code,term}; }); }
+    if(c){ if(term)termOf[s.code]=term; (c.overlays||[]).forEach(o=>{ if(!overlayCourse[o]) overlayCourse[o]={code:s.code,term};
+      if(s.done) earnedOverlays[o]=true; }); }
   };
   (state.transfer||[]).forEach(s=>visit(s,"Transfer"));
   D.plan.forEach(t=>(state.terms[t.id]||[]).forEach(s=>visit(s,t.label)));
-  return {planned,earned,totPlanned,totEarned,electives,reqCourse,overlayCourse,termOf};
+  return {planned,earned,totPlanned,totEarned,electives,reqCourse,overlayCourse,termOf,earnedReqs,earnedOverlays};
 }
 
 /* ---------- render ---------- */
@@ -388,14 +430,18 @@ function renderDash(){
   document.getElementById("totBig").textContent=c.totPlanned;
   document.getElementById("totBig").classList.toggle("ok",c.totPlanned>=D.meta.gradFloor);
   document.getElementById("totCap").innerHTML=`units planned · <b>${D.meta.gradFloor}</b> to graduate`;
+  const earnedCap=document.getElementById("totEarnedCap");
+  if(c.totEarned>0){earnedCap.textContent=`${c.totEarned} units completed`;earnedCap.style.display="";}
+  else earnedCap.style.display="none";
   document.getElementById("totBar").style.width=Math.min(100,c.totPlanned/D.meta.planTotal*100)+"%";
   document.getElementById("floorMark").style.left=(D.meta.gradFloor/D.meta.planTotal*100)+"%";
   document.getElementById("cards").innerHTML=D.areas.map(a=>{
-    const p=c.planned[a.key],met=p>=a.target,pw=Math.min(100,p/a.target*100);
+    const p=c.planned[a.key],e=c.earned[a.key]||0,met=p>=a.target,pw=Math.min(100,p/a.target*100),ew=Math.min(100,e/a.target*100);
     return `<div class="cat ${met?'met':''}">
       <div class="ct"><span class="nm">${a.label}</span><span class="vu"><b>${p}</b>/${a.target}</span></div>
-      <div class="bar"><i style="width:${pw}%;background:${met?'var(--ok)':a.color}"></i></div>
+      <div class="bar" title="${p} planned · ${e} completed"><i style="width:${pw}%;background:${met?'var(--ok)':a.color}"></i></div>
       <div class="status ${met?'':'short'}">${met?'✓ on track':(a.target-p)+' units to go'}</div>
+      ${e>0?`<div class="earned-row"><span class="earned-badge">✓ ${e}</span><span class="earned-label">completed</span></div>`:''}
     </div>`;
   }).join("");
   document.getElementById("dashFoot").innerHTML = c.electives ? `Plus ${c.electives} free-elective units (count toward the 120 total).` : '';
@@ -443,76 +489,193 @@ function termCard(t){ const slots=state.terms[t.id]||[]; let tu=0; slots.forEach
 }
 function reqLabel(rk){ const r=reqByKey[rk]; if(!r)return rk; const a=areaByKey[r.area];
   return (a.key==='ldge'||a.key==='udge') ? r.label : a.label; }
-function pillsHtml(s){
+function pillsHtml(s, extraPill){
   const c=s.code?byCode[s.code]:null;
-  if(!c){ return s.label?`<div class="pills"><span class="pill target">${esc(s.label)}</span></div>`:''; }
+  if(!c){ return s.label?`<div class="pills"><span class="pill target">${esc(s.label)}</span>${extraPill||''}</div>`:''; }
   const out=[];
   if(s.req&&reqByKey[s.req]) out.push(`<span class="pill primary">${esc(reqLabel(s.req))}</span>`);
   else out.push(`<span class="pill none">free elective</span>`);
   (c.overlays||[]).forEach(o=>{ if(overlayByKey[o]) out.push(`<span class="pill overlay" title="also satisfies">${esc(overlayShort(o))}</span>`); });
+  if(extraPill) out.push(extraPill);
   return `<div class="pills">${out.join("")}</div>`;
 }
 function overlayShort(o){ return (overlayByKey[o]?overlayByKey[o].label:o).replace('GE ','').split('(')[0].trim(); }
+function isChoiceReq(reqKey){
+  // A "choice" req is one without a "fixed" property — meaning multiple courses can satisfy it.
+  if(!reqKey||!reqByKey[reqKey]) return false;
+  return !reqByKey[reqKey].fixed;
+}
+// GE catalog links for each choice requirement key
+const GE_CATALOG_URLS={
+  "oral":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaA1",
+  "written":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaA2",
+  "critical":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaA3",
+  "physci":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaB1",
+  "lifesci":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaB2",
+  "lab":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaB3",
+  "arts":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaC1",
+  "ethnic":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#AreaF",
+  "rp_we":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
+  "gwar":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#UDGE",
+  "expl_nat":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#ExplNat",
+  "expl_soc":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#ExplSoc",
+  "expl_hum":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884#ExplHum",
+  "focus1":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
+  "focus2":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
+  "lm_1":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
+  "lm_2":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
+  "lm_3":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
+  "reg1":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
+  "reg2":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
+};
+// Try to build a catalog URL for any course, including ones without coid, by searching live catalog
+function getCourseUrl(co, code){
+  if(!co) return null;
+  if(co.url) return co.url;
+  if(co.coid) return courseUrl(co.coid);
+  // Try to find by searching the live catalog index for this code
+  return null;
+}
 function slotHtml(termId,s,i){
   const co=s.code?byCode[s.code]:null;
   if(co&&co.coid&&(!co.desc||co.units==null)) setTimeout(()=>ensureDetail(s.code),0);
   const u=slotUnits(s); const ar=slotArea(s); const area=ar?areaByKey[ar]:null;
   const empty=!s.code, elective=!ar&&!!s.code;
-  const cls=empty?"empty":(elective?"elective":"");
-  const codeHtml=co?(co.url?`<a class="code" href="${co.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(s.code)}</a>`:`<span class="code">${esc(s.code)}</span>`):`<span class="code placeholder">${esc(s.label?s.label:"+ choose a course")}</span>`;
+  const isChoice = isChoiceReq(s.req);
+  const isDone = !!s.done;
+  let cls = empty?"empty":(elective?"elective":"");
+  if(isChoice && !empty) cls = (cls?" ":"")+"choice-slot";
+  if(isDone && !empty) cls += " done-slot";
+  // Build course URL: use stored url, fallback to coid lookup, or live catalog search
+  const courseLink = co ? getCourseUrl(co, s.code) : null;
+  const codeHtml=co
+    ?(courseLink
+        ?`<a class="code" href="${courseLink}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(s.code)}</a>`
+        :`<span class="code" style="color:var(--scarlet)">${esc(s.code)}</span>`)
+    :`<span class="code placeholder">${esc(s.label?s.label:"+ choose a course")}</span>`;
   const titleHtml=co?`<span class="ttl">${esc(co.title||'')}</span>`:(s.label&&empty?`<span class="ttl">choose a course for this slot</span>`:'');
   let flags="";
   if(co&&co.cOrBetter)flags+=`<span class="flag c" title="Must earn C or better">C or better</span>`;
   if(co&&co.prereq)flags+=`<span class="flag pre" title="Prerequisite: ${esc(co.prereq)}">prereq</span>`;
   const dotc=area?area.color:"#cdbfa6";
-  return `<div class="slot ${cls}" data-term="${termId}" data-i="${i}">
+  // Choice pill with catalog link
+  let choicePill="";
+  if(isChoice && s.req){
+    const catUrl=GE_CATALOG_URLS[s.req]||"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884";
+    const count=Object.values(byCode).filter(c=>c.reqs.includes(s.req)).length;
+    choicePill=`<a class="pill choice-link" href="${catUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="View approved courses for this requirement">☰ ${count>1?count+' options':'see options'}</a>`;
+  }
+  return `<div class="slot ${cls}" data-term="${termId}" data-i="${i}" draggable="${!empty}">
     <div class="slot-top">
+      <span class="drag-handle" title="Drag to move">⠿</span>
       <span class="dot" style="background:${dotc}"></span>
       <div class="pickwrap" data-pick>${codeHtml}${titleHtml}</div>
       <span class="un ${u==null?'q':''}">${u==null?'?':u}</span>
       <button class="rm" data-rm title="remove course">✕</button>
     </div>
     ${co&&co.desc?`<div class="slot-desc">${esc(co.desc.slice(0,150))}${co.desc.length>150?'…':''}</div>`:''}
-    ${pillsHtml(s)}
-    <div class="slot-foot">${flags}<label class="done"><input type="checkbox" ${s.done?'checked':''} data-done> done</label></div>
+    ${pillsHtml(s,choicePill)}
+    <div class="slot-foot">${flags}<label class="done-lbl"><input type="checkbox" ${s.done?'checked':''} data-done><span>done</span></label></div>
   </div>`;
 }
+// ---------- drag and drop ----------
+let dragSrc = null; // {termId, idx, slot}
+
 function bindTerms(){
   document.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",e=>{ const tid=e.currentTarget.dataset.add;
     state.terms[tid].push({code:null,req:null,label:null,units:null,manual:null,done:false}); save(); renderYears(); openPicker(tid,state.terms[tid].length-1,false); }));
   document.querySelectorAll(".slot").forEach(sl=>{ const tid=sl.dataset.term,i=+sl.dataset.i;
     sl.querySelector("[data-pick]").addEventListener("click",()=>openPicker(tid,i,false));
     sl.querySelector("[data-rm]").addEventListener("click",ev=>{ev.stopPropagation(); state.terms[tid].splice(i,1); save(); renderYears(); renderDash(); renderChecklist();});
-    sl.querySelector("[data-done]").addEventListener("change",ev=>{ev.stopPropagation(); state.terms[tid][i].done=ev.target.checked; save(); renderDash(); renderChecklist();});
+    sl.querySelector("[data-done]").addEventListener("change",ev=>{ev.stopPropagation(); state.terms[tid][i].done=ev.target.checked; save(); renderDash(); renderChecklist(); renderYears();});
+    // drag
+    if(sl.getAttribute("draggable")==="true"){
+      sl.addEventListener("dragstart",e=>{
+        dragSrc={termId:tid,idx:i};
+        sl.classList.add("dragging");
+        e.dataTransfer.effectAllowed="move";
+        e.dataTransfer.setData("text/plain",tid+":"+i);
+      });
+      sl.addEventListener("dragend",()=>{ sl.classList.remove("dragging");
+        document.querySelectorAll(".drag-over,.drag-target").forEach(el=>el.classList.remove("drag-over","drag-target")); });
+    }
+    sl.addEventListener("dragover",e=>{ e.preventDefault(); e.dataTransfer.dropEffect="move";
+      if(dragSrc&&(dragSrc.termId!==tid||dragSrc.idx!==i)) sl.classList.add("drag-target"); });
+    sl.addEventListener("dragleave",()=>sl.classList.remove("drag-target"));
+    sl.addEventListener("drop",e=>{ e.preventDefault(); sl.classList.remove("drag-target");
+      if(!dragSrc||(dragSrc.termId===tid&&dragSrc.idx===i)) return;
+      const srcSlot=JSON.parse(JSON.stringify(state.terms[dragSrc.termId][dragSrc.idx]));
+      const dstSlot=JSON.parse(JSON.stringify(state.terms[tid][i]));
+      // Move src -> dst position
+      state.terms[dragSrc.termId].splice(dragSrc.idx,1,dstSlot);
+      state.terms[tid].splice(i,1,srcSlot);
+      // If moving to a different term, clear the req if it doesn't fit (auto-heal will fix)
+      if(dragSrc.termId!==tid){ normalizeAssignments(); }
+      dragSrc=null; save(); render();
+    });
+  });
+  // Drop onto slots container (to append at end of term)
+  document.querySelectorAll(".slots").forEach(sl=>{
+    sl.addEventListener("dragover",e=>{ e.preventDefault(); sl.classList.add("drag-over"); });
+    sl.addEventListener("dragleave",e=>{ if(!sl.contains(e.relatedTarget)) sl.classList.remove("drag-over"); });
+    sl.addEventListener("drop",e=>{
+      sl.classList.remove("drag-over");
+      if(!dragSrc) return;
+      const destTermId=sl.closest(".term").querySelector("[data-add]")?.dataset.add;
+      if(!destTermId) return;
+      // Only fire if dropped on container, not a slot (slot handles its own drop)
+      if(e.target.closest(".slot")) return;
+      if(dragSrc.termId===destTermId) return;
+      const srcSlot=state.terms[dragSrc.termId].splice(dragSrc.idx,1)[0];
+      state.terms[destTermId].push(srcSlot);
+      normalizeAssignments();
+      dragSrc=null; save(); render();
+    });
   });
 }
 
 /* ---------- checklist view (dynamic) ---------- */
 function renderChecklist(){
   const c=compute();
-  let dash=`<tr><th>Category</th><th>Planned</th><th>Required</th><th style="text-align:right">Status</th></tr>`;
-  D.areas.forEach(a=>{ const p=c.planned[a.key],met=p>=a.target;
-    dash+=`<tr><td class="c-nm">${a.label}</td><td class="c-v"><b>${p}</b> units</td><td class="c-v">${a.target} units</td>
+  let dash=`<tr><th>Category</th><th>Planned</th><th>Completed</th><th>Required</th><th style="text-align:right">Status</th></tr>`;
+  D.areas.forEach(a=>{ const p=c.planned[a.key],e=c.earned[a.key]||0,met=p>=a.target,done=e>=a.target;
+    dash+=`<tr><td class="c-nm">${a.label}</td>
+      <td class="c-v"><b>${p}</b> units</td>
+      <td class="c-v"><b style="${e>0?'color:var(--ok)':''}">${e}</b> units${e>0&&done?` <span class="earned">✓</span>`:''}</td>
+      <td class="c-v">${a.target} units</td>
       <td class="c-st ${met?'yes':'no'}">${met?'✓ met':(a.target-p)+' to go'}</td></tr>`; });
   document.getElementById("clDash").innerHTML=dash;
   let body="";
-  D.areas.forEach(a=>{ const reqs=D.reqs.filter(r=>r.area===a.key); const p=c.planned[a.key];
-    body+=`<div class="cl-sec"><div class="cl-h"><h2>${a.label}</h2><span class="u">${p}/${a.target} units</span></div>`;
+  D.areas.forEach(a=>{ const reqs=D.reqs.filter(r=>r.area===a.key); const p=c.planned[a.key];const e=c.earned[a.key]||0;
+    body+=`<div class="cl-sec"><div class="cl-h"><h2>${a.label}</h2><span class="u">${p}/${a.target} planned · <span style="color:var(--ok)">${e} earned</span></span></div>`;
     reqs.forEach(r=>{ const rc=c.reqCourse[r.key]; const has=rc&&rc.code; const term=c.termOf[r.key];
+      // Check if slot is done (earned)
+      const slotDone = has && c.earnedReqs && c.earnedReqs[r.key];
       const courseTxt = has ? `<span class="code">${esc(rc.code)}</span> <span class="tt">${esc((byCode[rc.code]&&byCode[rc.code].title)||'')}</span>`
                             : `<span class="tt">${esc(rc&&rc.label?rc.label:'choose a course')}</span>`;
       body+=`<div class="cl-row"><div class="rq">${esc(r.label)}</div>
         <div class="cs">${courseTxt}</div>
-        <div class="meta"><span class="termpill ${term?'':'tbd'}">${term||'to plan'}</span><span class="ck ${has?'yes':'no'}">${has?'✓':'○'}</span></div></div>`;
+        <div class="meta">
+          <span class="termpill ${term?'':'tbd'}">${term||'to plan'}</span>
+          <span class="ck-group" title="Planned"><span class="ck-label">plan</span><span class="ck ${has?'yes':'no'}">${has?'✓':'○'}</span></span>
+          <span class="ck-sep">·</span>
+          <span class="ck-group" title="Completed"><span class="ck-label">done</span><span class="ck ${slotDone?'yes':'no'}">${slotDone?'✓':'○'}</span></span>
+        </div></div>`;
     });
     body+=`</div>`;
   });
   body+=`<div class="cl-sec"><div class="cl-h"><h2>Graduation Overlays</h2><span class="u">no extra units</span></div>`;
   D.overlays.forEach(o=>{ const oc=c.overlayCourse[o.key]; const has=!!oc;
     const note = (o.key==='socbeh'&&has)?'<div class="cl-note">SDSU wants 3 social-science courses from 2+ departments — ECON is one dept; IB History likely fills the 2nd. Confirm.</div>':'';
+    const overlayDone = has && c.earnedOverlays && c.earnedOverlays[o.key];
     const courseTxt = has?`<span class="code">${esc(oc.code)}</span>`:`<span class="tt">not yet satisfied</span>`;
     body+=`<div class="cl-row"><div class="rq">${esc(o.label)}</div><div class="cs">${courseTxt}${note}</div>
-      <div class="meta"><span class="termpill ${has&&oc.term?'':'tbd'}">${has?(oc.term||''):'to plan'}</span><span class="ck ${has?'yes':'no'}">${has?'✓':'○'}</span></div></div>`;
+      <div class="meta">
+        <span class="termpill ${has&&oc.term?'':'tbd'}">${has?(oc.term||''):'to plan'}</span>
+        <span class="ck-group"><span class="ck-label">plan</span><span class="ck ${has?'yes':'no'}">${has?'✓':'○'}</span></span>
+        <span class="ck-sep">·</span>
+        <span class="ck-group"><span class="ck-label">done</span><span class="ck ${overlayDone?'yes':'no'}">${overlayDone?'✓':'○'}</span></span>
+      </div></div>`;
   });
   body+=`</div>`;
   body+=`<div class="cl-callout"><h3>GPA gates &amp; milestones</h3><ul>${D.gates.map(g=>`<li>${esc(g.label)}</li>`).join("")}</ul></div>`;
