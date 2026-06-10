@@ -72,8 +72,9 @@ section.block{background:var(--paper);border:1px solid var(--line);border-radius
 .block[open]>summary .twirl{transform:rotate(90deg)}
 .block .body{padding:4px 18px 18px}
 .tdesc{color:var(--muted);font-size:13px;margin:-2px 0 12px}
-.trow{display:grid;grid-template-columns:1.2fr 2fr 64px 1.4fr 34px;gap:8px;align-items:center;padding:6px 0;border-top:1px solid var(--line-soft)}
+.trow{display:grid;grid-template-columns:1.2fr 2fr 64px 1.4fr 56px 34px;gap:8px;align-items:center;padding:6px 0;border-top:1px solid var(--line-soft)}
 .trow input,.trow select{font-family:'Archivo';font-size:13px;border:1px solid var(--line);border-radius:7px;padding:6px 8px;background:#fff;width:100%}
+.trow .tdone{display:flex;align-items:center;gap:4px;font-size:11px;cursor:pointer;white-space:nowrap}
 .trow .tx{font-weight:600}
 .thead{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);border:0}
 
@@ -208,7 +209,7 @@ footer b{color:var(--scarlet)}
 @media (max-width:900px){
   .cards{grid-template-columns:repeat(2,1fr)}
   .terms{grid-template-columns:1fr}
-  .trow{grid-template-columns:1fr 1fr;gap:6px}.trow .thsp{display:none}
+  .trow{grid-template-columns:1fr 1fr;gap:6px}.trow .thsp{display:none}.trow .tdone{justify-self:start}
   .cl-row{grid-template-columns:1fr auto}
 }
 @media (max-width:560px){
@@ -414,10 +415,16 @@ function compute(){
     totPlanned+=u; if(s.done)totEarned+=u;
     if(ar){planned[ar]+=u; if(s.done)earned[ar]+=u;} else if(u>0 && s.code) electives+=u;
     if(s.req){ reqCourse[s.req]={code:s.code,label:s.label,term}; if(term)termOf[s.req]=term;
-      if(s.done&&s.code) earnedReqs[s.req]=true; }
+      if(s.done) earnedReqs[s.req]=true; }  // no &&s.code guard — transfer items count too
     const c=s.code?byCode[s.code]:null;
     if(c){ if(term)termOf[s.code]=term; (c.overlays||[]).forEach(o=>{ if(!overlayCourse[o]) overlayCourse[o]={code:s.code,term};
       if(s.done) earnedOverlays[o]=true; }); }
+    // Transfer items carry overlays via their req's course — also honour done for overlays
+    // via the req key (e.g. ECON 101 req=bp_econ1 has socbeh overlay tagged in byCode)
+    if(!c && s.code && s.done && s.req){
+      const reqCo=reqByKey[s.req]; if(reqCo&&reqCo.fixed){ const fc=byCode[reqCo.fixed];
+        if(fc)(fc.overlays||[]).forEach(o=>{ earnedOverlays[o]=true; }); }
+    }
   };
   (state.transfer||[]).forEach(s=>visit(s,"Transfer"));
   D.plan.forEach(t=>(state.terms[t.id]||[]).forEach(s=>visit(s,t.label)));
@@ -464,20 +471,25 @@ function renderDash(){
 }
 
 function renderTransfer(){
-  const host=document.getElementById("transferRows"); let total=0;
-  const head=`<div class="trow thead"><div>Code</div><div>Title</div><div>Units</div><div>Counts toward</div><div class="thsp"></div></div>`;
-  host.innerHTML=head+(state.transfer||[]).map((s,i)=>{ total+=slotUnits(s)||0;
+  const host=document.getElementById("transferRows"); let total=0,earned=0;
+  const head=`<div class="trow thead"><div>Code</div><div>Title</div><div>Units</div><div>Counts toward</div><div>Earned</div><div class="thsp"></div></div>`;
+  host.innerHTML=head+(state.transfer||[]).map((s,i)=>{ const u=slotUnits(s)||0; total+=u; if(s.done)earned+=u;
     return `<div class="trow">
       <input class="tx" value="${esc(s.code||'')}" data-ti="${i}" data-f="code" placeholder="AP / IB / course">
       <input value="${esc(s.title||'')}" data-ti="${i}" data-f="title" placeholder="description">
       <input type="number" min="0" step="1" value="${s.units??0}" data-ti="${i}" data-f="units">
       ${reqOptions(s.req,'ti',i)}
+      <label class="tdone" title="Mark as earned/confirmed"><input type="checkbox" ${s.done?'checked':''} data-done-ti="${i}"> <span style="font-size:11px;color:${s.done?'var(--ok)':'var(--muted)'};font-weight:${s.done?'700':'400'}">${s.done?'✓ done':'done'}</span></label>
       <button class="rm" data-del-ti="${i}" title="remove">✕</button></div>`;
   }).join("");
-  document.getElementById("transferSum").textContent=total?`${total} units applied`:"";
-  host.querySelectorAll("input,select").forEach(el=>el.addEventListener("change",e=>{
+  document.getElementById("transferSum").textContent=total?`${total} units${earned?` · ${earned} earned`:''}  applied`:"";
+  host.querySelectorAll("input[type=text],input[type=number],select").forEach(el=>el.addEventListener("change",e=>{
     const i=+e.target.dataset.ti,f=e.target.dataset.f||"req"; let v=e.target.value;
     if(f==="units")v=parseInt(v)||0; if(f==="req")state.transfer[i].req=v||null; else state.transfer[i][f]=v;
+    save(); renderDash(); renderTransfer(); renderChecklist();
+  }));
+  host.querySelectorAll("[data-done-ti]").forEach(cb=>cb.addEventListener("change",e=>{
+    state.transfer[+e.target.dataset.doneTi].done=e.target.checked;
     save(); renderDash(); renderTransfer(); renderChecklist();
   }));
   host.querySelectorAll("[data-del-ti]").forEach(b=>b.addEventListener("click",e=>{ state.transfer.splice(+e.currentTarget.dataset.delTi,1); save(); renderTransfer(); renderDash(); renderChecklist(); }));
@@ -523,20 +535,21 @@ function isChoiceReq(reqKey){
 }
 // GE catalog links for each choice requirement key
 const GE_CATALOG_URLS={
-  // Links from Jason Tan's advisor study plan spreadsheet (updated to 2026-27 catalog)
-  "oral":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
-  "written":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
-  "critical":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
-  "physci":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
-  "lifesci":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
-  "lab":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
-  "arts":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
-  "ethnic":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
+  // Exact base URLs from Jason Tan's advisor study plan spreadsheet (catoid=11, poid=10640)
+  // Fragments follow Acalog CMS slug pattern; #5bbiologicalscience confirmed from advisor example
+  "oral":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#1oralcommunication",
+  "written":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#2writtencommunication",
+  "critical":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#3criticalthinking",
+  "physci":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#5aphysicalscience",
+  "lifesci":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#5bbiologicalscience",
+  "lab":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#5claboratory",
+  "arts":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#6aarts",
+  "ethnic":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#fethnicstudies",
   "rp_we":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
-  "gwar":"https://catalog.sdsu.edu/content.php?catoid=12&navoid=1121",
-  "expl_nat":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
-  "expl_soc":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
-  "expl_hum":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884",
+  "gwar":"https://catalog.sdsu.edu/content.php?catoid=11&navoid=1002",
+  "expl_nat":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#explorationsnaturalsciences",
+  "expl_soc":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#explorationssocialbehavioralsciences",
+  "expl_hum":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#explorationshumanities",
   "focus1":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
   "focus2":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
   "lm_1":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
