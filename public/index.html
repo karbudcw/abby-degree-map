@@ -12,88 +12,71 @@
   --scarlet:#A6192E; --scarlet-deep:#7d1222; --ink:#1c1714; --black:#0d0a08;
   --gold:#E8B33D; --gold-deep:#C8901C; --cream:#FBF6EC; --paper:#FFFDF8;
   --line:#e3d8c4; --line-soft:#efe7d6; --muted:#8a7d6a; --muted2:#a99c86;
-  --ok:#2E7D52; --warn:#B5651D; --warn-bg:#fbeede; --shadow:0 1px 2px rgba(40,25,10,.06),0 8px 24px rgba(40,25,10,.06);
+  --ok:#2E7D52; --ok-bg:#eef6f0; --warn:#B5651D; --warn-bg:#fbeede;
+  --shadow:0 1px 2px rgba(40,25,10,.05),0 8px 22px rgba(40,25,10,.06);
 }
 *{box-sizing:border-box}
 html,body{margin:0}
-body{
-  background:var(--cream);
-  color:var(--ink);
-  font-family:'Archivo',system-ui,sans-serif;
-  font-size:15px; line-height:1.5;
-  background-image:radial-gradient(circle at 12% -5%, rgba(232,179,61,.10), transparent 40%),radial-gradient(circle at 100% 0%, rgba(166,25,46,.06), transparent 35%);
-  background-attachment:fixed;
-}
+body{background:var(--cream);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;font-size:15px;line-height:1.5;
+  background-image:radial-gradient(circle at 10% -5%, rgba(232,179,61,.09), transparent 42%),radial-gradient(circle at 100% 0%, rgba(166,25,46,.05), transparent 38%);background-attachment:fixed;}
 h1,h2,h3,.disp{font-family:'Fraunces',Georgia,serif}
 a{color:var(--scarlet)}
-.wrap{max-width:1280px;margin:0 auto;padding:0 20px 90px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px 90px}
 
-/* ---------- masthead ---------- */
-header.mast{padding:34px 20px 14px;max-width:1280px;margin:0 auto}
+header.mast{padding:30px 20px 8px;max-width:1240px;margin:0 auto}
 .kicker{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--scarlet);font-weight:700}
-.mast h1{font-size:clamp(30px,5vw,52px);line-height:1.02;margin:.18em 0 .15em;font-weight:600;letter-spacing:-.01em}
+.mast h1{font-size:clamp(28px,4.6vw,46px);line-height:1.02;margin:.16em 0 .12em;font-weight:600;letter-spacing:-.01em}
 .mast h1 em{font-style:italic;color:var(--scarlet)}
-.mast p.sub{margin:.2em 0 0;color:var(--muted);max-width:60ch;font-size:14.5px}
+.mast p.sub{margin:.2em 0 0;color:var(--muted);max-width:62ch;font-size:14px}
 .mast .tags{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
 .mast .tags span{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
 
-/* ---------- dashboard ---------- */
-.dash{position:sticky;top:0;z-index:40;background:rgba(251,246,236,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-bottom:24px}
-.dash-inner{max-width:1280px;margin:0 auto;padding:14px 20px}
-.dash-top{display:flex;align-items:flex-end;gap:22px;flex-wrap:wrap}
-.total{display:flex;align-items:baseline;gap:10px}
-.total .num{font-family:'Fraunces',serif;font-size:40px;font-weight:600;line-height:1;color:var(--ink)}
-.total .num.over{color:var(--ok)}
-.total .of{color:var(--muted);font-size:15px}
-.total small{display:block;color:var(--muted2);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}
-.totbar{flex:1;min-width:220px;height:10px;border-radius:999px;background:var(--line-soft);overflow:hidden;position:relative}
-.totbar i{display:block;height:100%;background:linear-gradient(90deg,var(--scarlet),var(--scarlet-deep))}
-.totbar .floor{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);opacity:.5}
-.dash-actions{display:flex;gap:8px;flex-wrap:wrap}
-.btn{font-family:'Archivo';font-size:12.5px;font-weight:600;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:7px 12px;cursor:pointer;transition:.12s}
+.toggle{max-width:1240px;margin:18px auto 0;padding:0 20px;display:flex;align-items:center;gap:10px}
+.seg{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:3px;box-shadow:var(--shadow)}
+.seg button{font-family:'Archivo';font-weight:600;font-size:13.5px;border:0;background:transparent;color:var(--muted);padding:8px 16px;border-radius:8px;cursor:pointer;transition:.12s}
+.seg button.on{background:var(--scarlet);color:#fff}
+.toggle .spacer{flex:1}
+.toggle .ctl{display:flex;gap:8px}
+.btn{font-family:'Archivo';font-size:12.5px;font-weight:600;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:9px;padding:8px 13px;cursor:pointer;transition:.12s}
 .btn:hover{border-color:var(--scarlet);color:var(--scarlet)}
-.btn.primary{background:var(--scarlet);color:#fff;border-color:var(--scarlet)}
-.btn.primary:hover{background:var(--scarlet-deep);color:#fff}
-.btn.tiny{padding:3px 8px;font-size:11.5px}
+.btn.tiny{padding:4px 9px;font-size:11.5px}
+.view{display:none}
+.view.on{display:block}
 
-.areas{display:grid;grid-template-columns:repeat(4,1fr);gap:8px 16px;margin-top:14px}
-.area{cursor:default}
-.area .a-top{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;margin-bottom:3px}
-.area .a-lbl{font-weight:600;color:var(--ink)}
-.area .a-val{color:var(--muted);font-variant-numeric:tabular-nums}
-.area .a-val b{color:var(--ink)}
-.abar{height:7px;border-radius:999px;background:var(--line-soft);overflow:hidden}
-.abar i{display:block;height:100%;border-radius:999px;transition:width .3s}
-.abar i.done{opacity:1}
-.area.met .a-lbl::after{content:" ✓";color:var(--ok)}
+.dash{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px 22px;margin:18px 0 24px}
+.dash .total-row{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:6px}
+.total .big{font-family:'Fraunces';font-size:46px;font-weight:600;line-height:.95;color:var(--ink)}
+.total .big.ok{color:var(--ok)}
+.total .cap{font-size:13px;color:var(--muted);margin-top:2px}
+.total .cap b{color:var(--ink)}
+.totbar{flex:1;min-width:240px;height:12px;border-radius:999px;background:var(--line-soft);overflow:hidden;position:relative;margin-bottom:6px}
+.totbar i{display:block;height:100%;background:linear-gradient(90deg,var(--scarlet),var(--scarlet-deep))}
+.totbar .floor{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);opacity:.45}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.cat{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fffdf9}
+.cat.met{border-color:#cfe6d8;background:#f6fbf8}
+.cat .ct{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.cat .nm{font-weight:600;font-size:13px;color:var(--ink)}
+.cat .vu{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.cat .vu b{color:var(--ink)}
+.cat .bar{height:6px;border-radius:999px;background:var(--line-soft);overflow:hidden;margin-top:9px}
+.cat .bar i{display:block;height:100%;border-radius:999px}
+.cat .status{font-size:11.5px;margin-top:7px;font-weight:600}
+.cat.met .status{color:var(--ok)} .cat .status.short{color:var(--warn)}
+.dash .foot{margin-top:14px;font-size:12px;color:var(--muted2)}
 
-.overlays{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center}
-.overlays .ol-h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);margin-right:2px}
-.chip{font-size:11.5px;border-radius:999px;padding:3px 10px;border:1px solid var(--line);background:var(--paper);color:var(--muted);display:inline-flex;gap:5px;align-items:center}
-.chip.on{border-color:var(--ok);color:var(--ok);background:#eef6f0}
-.chip.on::before{content:"✓";font-weight:700}
-.chip.off::before{content:"○"}
-
-.alerts{margin-top:12px;display:flex;flex-direction:column;gap:5px}
-.alert{font-size:12.5px;background:var(--warn-bg);border:1px solid #e9d4b0;color:#7a4d18;border-radius:8px;padding:7px 11px;display:flex;gap:8px;align-items:flex-start}
-.alert.info{background:#eef3f8;border-color:#d3e0ee;color:#3c5673}
-.alert b{font-weight:700}
-.dash-collapse{display:none}
-
-/* ---------- transfer section ---------- */
 section.block{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-bottom:22px;overflow:hidden}
-.block > summary,.block-head{list-style:none;cursor:pointer;padding:15px 18px;display:flex;align-items:center;gap:10px;font-family:'Fraunces';font-size:18px;font-weight:600}
-.block > summary::-webkit-details-marker{display:none}
-.block > summary .twirl{transition:.2s;color:var(--scarlet)}
-.block[open] > summary .twirl{transform:rotate(90deg)}
+.block>summary,.block-head{list-style:none;cursor:pointer;padding:15px 18px;display:flex;align-items:center;gap:10px;font-family:'Fraunces';font-size:18px;font-weight:600}
+.block>summary::-webkit-details-marker{display:none}
+.block>summary .twirl{transition:.2s;color:var(--scarlet)}
+.block[open]>summary .twirl{transform:rotate(90deg)}
 .block .body{padding:4px 18px 18px}
 .tdesc{color:var(--muted);font-size:13px;margin:-2px 0 12px}
-.trow{display:grid;grid-template-columns:1.2fr 2fr 64px 1.4fr 30px;gap:8px;align-items:center;padding:6px 0;border-top:1px solid var(--line-soft)}
+.trow{display:grid;grid-template-columns:1.2fr 2fr 64px 1.4fr 34px;gap:8px;align-items:center;padding:6px 0;border-top:1px solid var(--line-soft)}
 .trow input,.trow select{font-family:'Archivo';font-size:13px;border:1px solid var(--line);border-radius:7px;padding:6px 8px;background:#fff;width:100%}
 .trow .tx{font-weight:600}
 .thead{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);border:0}
 
-/* ---------- year + term grid ---------- */
 .year{margin-bottom:30px}
 .year-h{display:flex;align-items:baseline;gap:12px;margin:0 2px 10px}
 .year-h .yr{font-family:'Fraunces';font-size:22px;font-weight:600}
@@ -108,39 +91,70 @@ section.block{background:var(--paper);border:1px solid var(--line);border-radius
 .term-h .tu b{color:var(--ink)}
 .mstones{padding:8px 12px 0;display:flex;flex-direction:column;gap:5px}
 .mstone{font-size:11.5px;color:var(--gold-deep);display:flex;gap:6px;align-items:flex-start}
-.mstone::before{content:"◆";font-size:9px;margin-top:3px}
-.slots{padding:8px 10px 4px;display:flex;flex-direction:column;gap:6px;flex:1}
-.slot{border:1px solid var(--line-soft);border-radius:9px;padding:7px 9px;background:#fffdf9;position:relative}
+.mstone::before{content:"\25C6";font-size:9px;margin-top:3px}
+.slots{padding:10px 10px 4px;display:flex;flex-direction:column;gap:8px;flex:1}
+
+.slot{border:1px solid var(--line-soft);border-radius:10px;padding:9px 10px;background:#fffdf9}
 .slot.empty{border-style:dashed;background:transparent}
 .slot.elective{background:#f6f4ef}
-.slot-main{display:flex;gap:8px;align-items:flex-start;cursor:pointer}
-.slot .code{font-weight:700;font-size:13.5px;white-space:nowrap}
-.slot .ttl{font-size:12px;color:var(--muted);line-height:1.25;flex:1;min-width:0}
-.slot .un{font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+.slot-top{display:flex;gap:8px;align-items:flex-start}
+.slot .dot{width:9px;height:9px;border-radius:50%;flex:none;margin-top:5px}
+.slot .pickwrap{flex:1;min-width:0;cursor:pointer}
+.slot .code{font-weight:700;font-size:13.5px}
+.slot a.code{text-decoration:none}
+.slot .code.placeholder{color:var(--muted);font-weight:600}
+.slot .ttl{font-size:12px;color:var(--muted);line-height:1.3;display:block;margin-top:1px}
+.slot .un{font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700;white-space:nowrap;margin-top:2px}
 .slot .un.q{color:var(--warn)}
-.slot-foot{display:flex;align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap}
-.reqsel{font-family:'Archivo';font-size:10.5px;border:1px solid var(--line);border-radius:999px;padding:2px 6px;background:#fff;color:var(--muted);max-width:100%}
-.dot{width:8px;height:8px;border-radius:50%;flex:none}
-.flag{font-size:10px;border-radius:5px;padding:1px 5px;font-weight:600}
-.flag.c{background:#eef6f0;color:var(--ok)}
+.slot .rm{border:1px solid var(--line);background:#fff;color:var(--muted2);border-radius:7px;width:24px;height:24px;line-height:1;cursor:pointer;font-size:13px;flex:none;margin-top:1px}
+.slot .rm:hover{border-color:var(--scarlet);color:var(--scarlet)}
+.slot-desc{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.35}
+.pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.pill{font-size:10.5px;font-weight:600;border-radius:999px;padding:2px 9px;border:1px solid transparent;white-space:nowrap}
+.pill.primary{background:var(--scarlet);color:#fff}
+.pill.overlay{background:#eef3f8;color:#3c5673;border-color:#d7e2ee}
+.pill.none{background:#f0ece3;color:var(--muted)}
+.pill.target{background:transparent;border:1px dashed var(--muted2);color:var(--muted)}
+.slot-foot{display:flex;align-items:center;gap:8px;margin-top:8px}
+.flag{font-size:10px;border-radius:5px;padding:1px 6px;font-weight:600}
+.flag.c{background:var(--ok-bg);color:var(--ok)}
 .flag.pre{background:var(--warn-bg);color:var(--warn);cursor:help}
-.slot .x{position:absolute;top:5px;right:6px;border:0;background:transparent;color:var(--muted2);cursor:pointer;font-size:14px;line-height:1;padding:2px}
-.slot .x:hover{color:var(--scarlet)}
-.slot .done{margin-left:auto;display:flex;align-items:center;gap:4px;font-size:10.5px;color:var(--muted);cursor:pointer;user-select:none}
-.slot-desc{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.35;border-top:1px dashed var(--line-soft);padding-top:5px}
-.addslot{border:1px dashed var(--line);border-radius:9px;background:transparent;color:var(--muted);font-family:'Archivo';font-size:12.5px;font-weight:600;padding:7px;cursor:pointer;margin:2px 10px 12px}
+.slot .done{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);cursor:pointer;user-select:none}
+.addslot{border:1px dashed var(--line);border-radius:9px;background:transparent;color:var(--muted);font-family:'Archivo';font-size:12.5px;font-weight:600;padding:8px;cursor:pointer;margin:2px 10px 12px}
 .addslot:hover{border-color:var(--scarlet);color:var(--scarlet)}
 
-/* ---------- checklist ---------- */
-.cl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 28px}
-.cl-area{margin-bottom:6px}
-.cl-area h4{font-family:'Fraunces';font-size:14px;margin:8px 0 4px}
-.cl-item{display:flex;gap:8px;align-items:center;font-size:12.5px;padding:2px 0}
-.cl-item .mk{width:15px;text-align:center}
-.cl-item.on .mk{color:var(--ok)} .cl-item.off .mk{color:var(--muted2)}
-.cl-item.on{color:var(--ink)} .cl-item.off{color:var(--muted)}
+.cl-intro{color:var(--muted);max-width:70ch;margin:4px 0 18px}
+.cl-dash{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:24px}
+.cl-dash table{width:100%;border-collapse:collapse}
+.cl-dash th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);text-align:left;padding:11px 16px;background:#fbf3e4}
+.cl-dash td{padding:11px 16px;border-top:1px solid var(--line-soft);vertical-align:middle}
+.cl-dash td.c-nm{font-weight:600}
+.cl-dash td.c-v{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.cl-dash td.c-v b{color:var(--ink)}
+.cl-dash td.c-st{text-align:right;white-space:nowrap;font-weight:600}
+.cl-dash .yes{color:var(--ok)} .cl-dash .no{color:var(--warn)}
+.cl-sec{margin-bottom:22px}
+.cl-h{display:flex;align-items:baseline;gap:10px;border-bottom:2px solid var(--scarlet);padding-bottom:5px;margin-bottom:2px}
+.cl-h h2{font-family:'Fraunces';font-size:18px;font-weight:600;margin:0}
+.cl-h .u{margin-left:auto;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cl-row{display:grid;grid-template-columns:34% 1fr auto;gap:10px;align-items:center;padding:8px 4px;border-bottom:1px solid var(--line-soft)}
+.cl-row .rq{font-weight:600}
+.cl-row .cs .code{font-weight:700}
+.cl-row .cs .tt{color:var(--muted);font-size:12.5px}
+.cl-row .meta{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.termpill{font-size:10.5px;font-weight:600;background:#efe7d6;color:#6b5d45;border-radius:999px;padding:2px 9px}
+.termpill.tbd{background:transparent;border:1px dashed var(--muted2);color:var(--muted)}
+.ck{font-size:15px;font-weight:700}
+.ck.yes{color:var(--ok)} .ck.no{color:var(--muted2)}
+.cl-note{font-size:11.5px;color:var(--warn);margin-top:3px}
+.cl-callout{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:10px;padding:12px 15px;margin-top:14px}
+.cl-callout h3{font-family:'Fraunces';font-size:15px;margin:0 0 5px}
+.cl-callout ul{margin:4px 0 0;padding-left:18px} .cl-callout li{margin:3px 0;font-size:13px}
 
-/* ---------- picker modal ---------- */
+footer{max-width:1240px;margin:10px auto 0;padding:0 20px;color:var(--muted2);font-size:11.5px;text-align:center}
+footer b{color:var(--scarlet)}
+.save-note{font-size:11px;color:var(--muted2)}
+
 .modal{position:fixed;inset:0;z-index:80;background:rgba(28,18,8,.4);display:none;align-items:flex-start;justify-content:center;padding:6vh 16px}
 .modal.show{display:flex}
 .picker{background:var(--paper);width:min(620px,100%);max-height:84vh;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.3);display:flex;flex-direction:column;overflow:hidden}
@@ -157,33 +171,19 @@ section.block{background:var(--paper);border:1px solid var(--line);border-radius
 .pli .pun{font-size:12px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
 .pli .ptags{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
 .pli .ptag{font-size:9.5px;border-radius:4px;padding:1px 5px;background:var(--line-soft);color:var(--muted)}
-.pli.notdeg{opacity:.75}
-.pli .pttl small{color:var(--warn)}
+.pli.notdeg{opacity:.72}
 .picker-f{padding:10px 16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted)}
 .clearbtn{color:var(--scarlet);cursor:pointer;font-weight:600}
 
-footer{max-width:1280px;margin:10px auto 0;padding:0 20px;color:var(--muted2);font-size:11.5px;text-align:center}
-footer b{color:var(--scarlet)}
-.save-note{font-size:11px;color:var(--muted2)}
-
-/* ---------- responsive ---------- */
 @media (max-width:900px){
-  .areas{grid-template-columns:repeat(2,1fr)}
+  .cards{grid-template-columns:repeat(2,1fr)}
   .terms{grid-template-columns:1fr}
-  .cl-grid{grid-template-columns:1fr}
-  .trow{grid-template-columns:1fr 1fr;gap:6px}
-  .trow .thsp{display:none}
+  .trow{grid-template-columns:1fr 1fr;gap:6px}.trow .thsp{display:none}
+  .cl-row{grid-template-columns:1fr auto}
 }
 @media (max-width:560px){
-  .wrap{padding:0 12px 80px}
-  .dash-inner{padding:10px 12px}
-  .total .num{font-size:30px}
-  .areas{display:none}
-  .dash.expand .areas{display:grid;grid-template-columns:1fr}
-  .dash.expand .overlays,.dash.expand .alerts{display:flex}
-  .overlays,.alerts{display:none}
-  .dash.expand .alerts{display:flex;flex-direction:column}
-  .dash-collapse{display:inline-flex}
+  .wrap{padding:0 12px 80px}.cards{grid-template-columns:1fr 1fr}
+  .total .big{font-size:36px}
 }
 </style>
 </head>
@@ -191,64 +191,64 @@ footer b{color:var(--scarlet)}
 <header class="mast">
   <div class="kicker">SDSU · Fowler College of Business · Class of 2030</div>
   <h1>Abby's <em>Degree Map</em></h1>
-  <p class="sub">International Business, B.A. — Spanish &amp; Western Europe emphasis. Plan every term, watch the credits add up by area, and keep the four-year track honest. Built on the 2026–2027 catalog and Jason Tan's study plan.</p>
+  <p class="sub">International Business, B.A. — Spanish &amp; Western Europe emphasis. Plan every term, then check it against the full graduation requirements. Built on the 2026–2027 catalog and Jason Tan's study plan.</p>
   <div class="tags" id="masttags"></div>
 </header>
 
-<!-- DASHBOARD -->
-<div class="dash" id="dash">
-  <div class="dash-inner">
-    <div class="dash-top">
-      <div class="total">
-        <div><small>Units placed</small>
-          <span class="num" id="totNum">0</span>
-          <span class="of" id="totOf">/ 120 floor · 129 plan</span>
-        </div>
-      </div>
-      <div class="totbar"><i id="totBar" style="width:0"></i><span class="floor" id="floorMark"></span></div>
-      <div class="dash-actions">
-        <button class="btn dash-collapse" id="expandBtn">Details</button>
-        <button class="btn" id="checklistBtn">Requirement checklist</button>
-        <button class="btn" id="updateCatBtn" title="Fetch the latest SDSU catalog into the app">⟳ Update catalog</button>
-        <button class="btn" id="resetBtn">Reset to advisor plan</button>
-      </div>
-    </div>
-    <div class="areas" id="areas"></div>
-    <div class="overlays" id="overlays"></div>
-    <div class="alerts" id="alerts"></div>
+<div class="toggle">
+  <div class="seg">
+    <button id="tabPlanner" class="on">Degree Planner</button>
+    <button id="tabChecklist">Graduation Checklist</button>
+  </div>
+  <div class="spacer"></div>
+  <div class="ctl">
+    <button class="btn" id="updateCatBtn" title="Fetch the latest SDSU catalog">⟳ Update catalog</button>
+    <button class="btn" id="resetBtn">Reset to advisor plan</button>
   </div>
 </div>
 
 <div class="wrap">
-  <!-- TRANSFER / INCOMING CREDIT -->
-  <details class="block" id="transferBlock">
-    <summary><span class="twirl">▸</span> Incoming &amp; transfer credit <span style="font-family:Archivo;font-size:12px;font-weight:600;color:var(--muted);margin-left:auto" id="transferSum"></span></summary>
-    <div class="body">
-      <p class="tdesc">AP, IB, dual-enrollment, and summer transfer credit applied before Year 1. Edit units and assign each to the area it satisfies — these subtract from what's still needed. Confirm every entry with Jason Tan before relying on it.</p>
-      <div id="transferRows"></div>
-      <button class="btn tiny" id="addTransfer" style="margin-top:10px">+ Add incoming credit</button>
+  <!-- ============ DEGREE PLANNER VIEW ============ -->
+  <div class="view on" id="viewPlanner">
+    <div class="dash">
+      <div class="total-row">
+        <div class="total"><div class="big" id="totBig">0</div>
+          <div class="cap" id="totCap">units planned</div></div>
+        <div class="totbar"><i id="totBar" style="width:0"></i><span class="floor" id="floorMark"></span></div>
+      </div>
+      <div class="cards" id="cards"></div>
+      <div class="foot" id="dashFoot"></div>
     </div>
-  </details>
 
-  <!-- CHECKLIST (toggle) -->
-  <section class="block" id="checklistBlock" style="display:none">
-    <div class="block-head"><span style="color:var(--scarlet)">✓</span> Requirement checklist</div>
-    <div class="body"><div class="cl-grid" id="checklist"></div></div>
-  </section>
+    <details class="block" id="transferBlock">
+      <summary><span class="twirl">▸</span> Incoming &amp; transfer credit <span style="font-family:Archivo;font-size:12px;font-weight:600;color:var(--muted);margin-left:auto" id="transferSum"></span></summary>
+      <div class="body">
+        <p class="tdesc">AP, IB, dual-enrollment, and summer transfer credit applied before Year 1. Edit units and assign each to the area it satisfies. Confirm every entry with Jason Tan before relying on it.</p>
+        <div id="transferRows"></div>
+        <button class="btn tiny" id="addTransfer" style="margin-top:10px">+ Add incoming credit</button>
+      </div>
+    </details>
 
-  <!-- YEARS -->
-  <div id="years"></div>
+    <div id="years"></div>
+  </div>
+
+  <!-- ============ GRADUATION CHECKLIST VIEW ============ -->
+  <div class="view" id="viewChecklist">
+    <p class="cl-intro">Every requirement to earn the degree, with the planned course and a simple ✓ when it's satisfied. Categories at the top sum planned credits against what's required. Items needing confirmation carry a short note.</p>
+    <div class="cl-dash"><table id="clDash"></table></div>
+    <div id="clBody"></div>
+  </div>
 
   <footer>
-    Reference tool — not an official degree evaluation. Verify against your
-    <a href="https://registrar.sdsu.edu/academic-success/understanding-degree-evaluation" target="_blank" rel="noopener">my.SDSU degree evaluation</a>
+    Reference tool — not an official degree evaluation. Verify against the
+    <a href="https://registrar.sdsu.edu/graduation/requirements" target="_blank" rel="noopener">my.SDSU degree evaluation</a>
     and confirm course choices with <b>Jason Tan</b> (jtan@sdsu.edu).
     <div class="save-note" id="catMeta"></div>
     <div class="save-note" id="saveNote">— Go Aztecs —</div>
   </footer>
 </div>
 
-<!-- PICKER MODAL -->
+<!-- picker modal -->
 <div class="modal" id="modal">
   <div class="picker">
     <div class="picker-h">
@@ -257,10 +257,7 @@ footer b{color:var(--scarlet)}
       <div class="psearch"><input id="pickerSearch" placeholder="Search code or title — e.g. DANCE, marketing, GEOG 101" autocomplete="off"></div>
     </div>
     <div class="picker-list" id="pickerList"></div>
-    <div class="picker-f">
-      <span id="pickerCount"></span>
-      <span class="clearbtn" id="pickerClear">Clear this slot</span>
-    </div>
+    <div class="picker-f"><span id="pickerCount"></span><span class="clearbtn" id="pickerClear">Clear this slot</span></div>
   </div>
 </div>
 
@@ -268,429 +265,325 @@ footer b{color:var(--scarlet)}
 <script>
 "use strict";
 const D = window.SDSU_DATA;
-if(!D){
-  document.body.innerHTML='<div style="max-width:620px;margin:12vh auto;font-family:Georgia,serif;color:#7d1222;background:#FFFDF8;border:1px solid #e3d8c4;border-radius:14px;padding:28px 32px;line-height:1.5">'+
-    '<h2 style="margin:0 0 10px">Course data didn\u2019t load</h2>'+
-    '<p style="font-family:system-ui,sans-serif;color:#1c1714"><code>data.js</code> must be served alongside <code>index.html</code>. '+
-    'That happens automatically once both files are uploaded to the Worker\u2019s assets. '+
-    'To preview without deploying, open the single-file <code>index_standalone.html</code> instead.</p></div>';
-  throw new Error("SDSU_DATA not found \u2014 ensure data.js is loaded alongside index.html");
-}
-const byCode = D.courses;                       // code -> course
-const reqByKey = Object.fromEntries(D.reqs.map(r=>[r.key,r]));
-const areaByKey = Object.fromEntries(D.areas.map(a=>[a.key,a]));
-const PLAN_ID = "abby-ib";                      // KV key
-let state = null, saveTimer = null, picker = {termId:null, slotIdx:null, isTransfer:false};
+if(!D){ document.body.innerHTML='<div style="max-width:620px;margin:12vh auto;font-family:Georgia,serif;color:#7d1222;background:#FFFDF8;border:1px solid #e3d8c4;border-radius:14px;padding:28px 32px;line-height:1.5"><h2>Course data didn\u2019t load</h2><p style="font-family:system-ui,sans-serif;color:#1c1714"><code>data.js</code> must be served next to <code>index.html</code> (automatic once both are uploaded to the Worker). To preview without deploying, open <code>index_standalone.html</code>.</p></div>'; throw new Error("SDSU_DATA missing"); }
+const byCode=D.courses;
+const reqByKey=Object.fromEntries(D.reqs.map(r=>[r.key,r]));
+const areaByKey=Object.fromEntries(D.areas.map(a=>[a.key,a]));
+const overlayByKey=Object.fromEntries(D.overlays.map(o=>[o.key,o]));
+const PLAN_ID="abby-ib";
+let state=null, saveTimer=null, picker={termId:null,slotIdx:null,isTransfer:false};
 
-/* ---------------- state ---------------- */
+/* ---------- state ---------- */
 function seedState(){
-  const terms = {};
-  D.plan.forEach(t=>{
-    terms[t.id] = t.slots.map(s=>({
-      code:s.code||null, req:s.req||null, label:s.label||null,
-      units:(s.code&&byCode[s.code]&&byCode[s.code].units!=null)?byCode[s.code].units:(s.units??null),
-      manual:null, done:false
-    }));
-  });
-  return {
-    version:2,
+  const terms={};
+  D.plan.forEach(t=>{ terms[t.id]=t.slots.map(s=>({
+    code:s.code||null, req:s.req||null, label:s.label||null,
+    units:(s.code&&byCode[s.code]&&byCode[s.code].units!=null)?byCode[s.code].units:(s.units??null),
+    manual:null, done:false })); });
+  return { version:3,
     transfer:[
-      {code:"AP STAT", title:"AP Statistics — confirm award w/ Jason Tan", units:0, req:null, done:true},
-      {code:"IB", title:"IB Diploma credit (varies by score)", units:0, req:null, done:true},
-      {code:"LCC FR", title:"French — Lane CC dual enrollment", units:0, req:null, done:true},
-    ],
-    terms
-  };
+      {code:"AP STAT",title:"AP Statistics — confirm award w/ Jason Tan",units:0,req:null,done:true},
+      {code:"IB HIST",title:"IB History — may cover 2nd-dept Social Science",units:0,req:null,done:true},
+      {code:"IB FR",title:"IB French SL (elective)",units:0,req:null,done:true},
+      {code:"LCC FR",title:"French — Lane CC dual enrollment (elective)",units:0,req:null,done:true},
+    ], terms };
 }
 function load(){
-  fetchState().then(s=>{ state = s || seedState(); render(); loadCatalog(); })
-              .catch(()=>{ state = localLoad() || seedState(); render(); loadCatalog(); });
+  fetchState().then(s=>{ state=s||seedState(); afterLoad(); })
+              .catch(()=>{ state=localLoad()||seedState(); afterLoad(); });
 }
-function save(){
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(()=>{
-    localSave(state);
-    fetch(`/api/state/${PLAN_ID}`,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(state)})
-      .then(()=>note("Saved")).catch(()=>note("Saved locally (offline)"));
-  }, 450);
-}
-function fetchState(){
-  return fetch(`/api/state/${PLAN_ID}`).then(r=> r.ok ? r.json() : null).then(j=> j && j.terms ? j : null);
-}
+function afterLoad(){ render(); loadCatalog(); }
+function save(){ clearTimeout(saveTimer); saveTimer=setTimeout(()=>{
+  localSave(state);
+  fetch(`/api/state/${PLAN_ID}`,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(state)})
+    .then(()=>note("Saved")).catch(()=>note("Saved locally (offline)"));
+}, 450); }
+function fetchState(){ return fetch(`/api/state/${PLAN_ID}`).then(r=>r.ok?r.json():null).then(j=>j&&j.terms?j:null); }
 function localSave(s){ try{ localStorage.setItem("sdsu-"+PLAN_ID, JSON.stringify(s)); }catch(e){} }
 function localLoad(){ try{ const v=localStorage.getItem("sdsu-"+PLAN_ID); return v?JSON.parse(v):null; }catch(e){ return null; } }
 function note(t){ const n=document.getElementById("saveNote"); n.textContent=t; clearTimeout(n._t); n._t=setTimeout(()=>n.textContent="— Go Aztecs —",1600); }
 
-/* ---------------- live catalog (served from the Worker's KV) ---------------- */
+/* ---------- live catalog ---------- */
 function courseUrl(coid){ return `https://catalog.sdsu.edu/preview_course_nopop.php?catoid=${D.meta.catoid}&coid=${coid}`; }
 function mergeCatalog(cat){
-  for(const code in cat){
-    const info=cat[code]||{}; let c=byCode[code];
-    if(!c){
-      c={code, title:info.title||code, units:(info.units??null), coid:info.coid||null,
-         reqs:(info.reqs||[]).slice(), overlays:(info.overlays||[]).slice(),
-         prereq:null, cOrBetter:false, focus:null, desc:info.desc||null};
-      if(info.coid) c.url=courseUrl(info.coid);
-      byCode[code]=c;
-    } else { // curated entries are authoritative — only fill blanks
-      if((!c.title||c.title===c.code)&&info.title) c.title=info.title;
-      if(c.units==null&&info.units!=null) c.units=info.units;
-      if(!c.coid&&info.coid){ c.coid=info.coid; c.url=courseUrl(info.coid); }
-      if(!c.desc&&info.desc) c.desc=info.desc;
-      (info.reqs||[]).forEach(r=>{ if(!c.reqs.includes(r)) c.reqs.push(r); });
-      (info.overlays||[]).forEach(o=>{ if(!c.overlays.includes(o)) c.overlays.push(o); });
-    }
-  }
+  for(const code in cat){ const info=cat[code]||{}; let c=byCode[code];
+    if(!c){ c={code,title:info.title||code,units:(info.units??null),coid:info.coid||null,reqs:(info.reqs||[]).slice(),overlays:(info.overlays||[]).slice(),prereq:null,cOrBetter:false,focus:null,desc:info.desc||null};
+      if(info.coid)c.url=courseUrl(info.coid); byCode[code]=c;
+    } else {
+      if((!c.title||c.title===c.code)&&info.title)c.title=info.title;
+      if(c.units==null&&info.units!=null)c.units=info.units;
+      if(!c.coid&&info.coid){c.coid=info.coid;c.url=courseUrl(info.coid);}
+      if(!c.desc&&info.desc)c.desc=info.desc;
+      (info.reqs||[]).forEach(r=>{if(!c.reqs.includes(r))c.reqs.push(r);});
+      (info.overlays||[]).forEach(o=>{if(!c.overlays.includes(o))c.overlays.push(o);});
+    } }
 }
 function loadCatalog(){
   fetch('/api/catalog').then(r=>r.ok?r.json():null).then(cat=>{
-    if(cat && typeof cat==='object' && Object.keys(cat).length){ mergeCatalog(cat); render(); }
+    if(cat&&typeof cat==='object'&&Object.keys(cat).length){ mergeCatalog(cat); normalizeAssignments(); render(); }
   }).catch(()=>{});
-  fetch('/api/catalog/meta').then(r=>r.ok?r.json():{}).then(meta=>{
-    const el=document.getElementById('catMeta');
-    if(el) el.textContent = meta&&meta.count ? `Catalog: ${meta.count} courses · updated ${(''+meta.lastRefresh).slice(0,10)}`
-                                             : 'Catalog not yet loaded — use “Update catalog”.';
+  fetch('/api/catalog/meta').then(r=>r.ok?r.json():{}).then(meta=>{ const el=document.getElementById('catMeta');
+    if(el) el.textContent = meta&&meta.count ? `Catalog: ${meta.count} courses · updated ${(''+meta.lastRefresh).slice(0,10)}` : 'Catalog not yet loaded — use “⟳ Update catalog”.';
   }).catch(()=>{});
 }
 const _detailAsked={};
-function ensureDetail(code){
-  const c=byCode[code]; if(!c||!c.coid) return; if(c.desc&&c.units!=null) return; if(_detailAsked[c.coid]) return;
+function ensureDetail(code){ const c=byCode[code]; if(!c||!c.coid) return; if(c.desc&&c.units!=null) return; if(_detailAsked[c.coid]) return;
   _detailAsked[c.coid]=true;
-  fetch(`/api/course/${c.coid}`).then(r=>r.ok?r.json():null).then(d=>{
-    if(!d) return; let ch=false;
-    if(c.units==null&&d.units!=null){ c.units=d.units; ch=true; }
-    if(!c.desc&&d.desc){ c.desc=d.desc; ch=true; }
-    if(!c.prereq&&d.prereq) c.prereq=d.prereq;
-    if(ch) render();
+  fetch(`/api/course/${c.coid}`).then(r=>r.ok?r.json():null).then(d=>{ if(!d)return; let ch=false;
+    if(c.units==null&&d.units!=null){c.units=d.units;ch=true;} if(!c.desc&&d.desc){c.desc=d.desc;ch=true;}
+    if(!c.prereq&&d.prereq)c.prereq=d.prereq;
+    if(Array.isArray(d.reqs))d.reqs.forEach(r=>{if(!c.reqs.includes(r)){c.reqs.push(r);ch=true;}});
+    if(Array.isArray(d.overlays))d.overlays.forEach(o=>{if(!c.overlays.includes(o)){c.overlays.push(o);ch=true;}});
+    if(ch){ normalizeAssignments(); render(); }
   }).catch(()=>{});
 }
 
-/* ---------------- units & computation ---------------- */
-function slotUnits(s){
-  if(s.manual!=null) return s.manual;
-  if(s.code && byCode[s.code] && byCode[s.code].units!=null) return byCode[s.code].units;
-  return s.units!=null ? s.units : null;
-}
-function slotArea(s){
-  if(s.req && reqByKey[s.req]) return reqByKey[s.req].area;
-  return null; // free elective
-}
-function compute(){
-  const earned={}, planned={}, ovl={}, reqFilled={};
-  D.areas.forEach(a=>{earned[a.key]=0;planned[a.key]=0;});
-  let totPlanned=0, totEarned=0, electives=0;
+/* ---------- assignment auto-heal ---------- */
+// Every placed course should count toward a requirement it actually satisfies.
+// Only (re)assign when the slot has no valid requirement yet — never override a real one.
+function normalizeAssignments(){
+  const filled={};
   const allSlots=[];
-  state.transfer.forEach(s=>allSlots.push({s,transfer:true}));
-  D.plan.forEach(t=> (state.terms[t.id]||[]).forEach(s=>allSlots.push({s,termId:t.id})));
-  allSlots.forEach(({s})=>{
-    const u=slotUnits(s)||0;
-    const ar=slotArea(s);
-    totPlanned+=u; if(s.done) totEarned+=u;
-    if(ar){ planned[ar]+=u; if(s.done) earned[ar]+=u; }
-    else if(u>0) electives+=u;
-    if(s.req) reqFilled[s.req]=true;
-    const c=s.code?byCode[s.code]:null;
-    if(c) (c.overlays||[]).forEach(o=>{ ovl[o]=true; });
+  (state.transfer||[]).forEach(s=>allSlots.push(s));
+  D.plan.forEach(t=>(state.terms[t.id]||[]).forEach(s=>allSlots.push(s)));
+  allSlots.forEach(s=>{ if(s.code&&s.req&&reqByKey[s.req]&&byCode[s.code]&&byCode[s.code].reqs.includes(s.req)) filled[s.req]=true; });
+  let changed=false;
+  allSlots.forEach(s=>{
+    if(!s.code) return; const c=byCode[s.code]; if(!c) return;
+    const valid = s.req && reqByKey[s.req] && c.reqs.includes(s.req);
+    if(valid) return;
+    const open = c.reqs.find(rk=>reqByKey[rk] && !filled[rk]);
+    const pick = open || c.reqs.find(rk=>reqByKey[rk]) || null;
+    if(pick!==s.req){ s.req=pick; changed=true; }
+    if(pick) filled[pick]=true;
   });
-  return {earned,planned,ovl,reqFilled,totPlanned,totEarned,electives};
+  if(changed) save();
 }
 
-/* ---------------- render ---------------- */
+/* ---------- computation ---------- */
+function slotUnits(s){ if(s.manual!=null)return s.manual; if(s.code&&byCode[s.code]&&byCode[s.code].units!=null)return byCode[s.code].units; return s.units!=null?s.units:null; }
+function slotArea(s){ if(s.req&&reqByKey[s.req])return reqByKey[s.req].area; return null; }
+function compute(){
+  const planned={},earned={}; D.areas.forEach(a=>{planned[a.key]=0;earned[a.key]=0;});
+  let totPlanned=0,totEarned=0,electives=0;
+  const reqCourse={}, overlayCourse={}, termOf={};
+  const visit=(s,term)=>{ const u=slotUnits(s)||0; const ar=slotArea(s);
+    totPlanned+=u; if(s.done)totEarned+=u;
+    if(ar){planned[ar]+=u; if(s.done)earned[ar]+=u;} else if(u>0 && s.code) electives+=u;
+    if(s.req){ reqCourse[s.req]={code:s.code,label:s.label,term}; if(term)termOf[s.req]=term; }
+    const c=s.code?byCode[s.code]:null;
+    if(c){ if(term)termOf[s.code]=term; (c.overlays||[]).forEach(o=>{ if(!overlayCourse[o]) overlayCourse[o]={code:s.code,term}; }); }
+  };
+  (state.transfer||[]).forEach(s=>visit(s,"Transfer"));
+  D.plan.forEach(t=>(state.terms[t.id]||[]).forEach(s=>visit(s,t.label)));
+  return {planned,earned,totPlanned,totEarned,electives,reqCourse,overlayCourse,termOf};
+}
+
+/* ---------- render ---------- */
 function render(){ renderMast(); renderDash(); renderTransfer(); renderYears(); renderChecklist(); }
-
-function renderMast(){
-  document.getElementById("masttags").innerHTML =
-    [`RedID ${D.meta.redid}`, D.meta.catalogYear+" catalog", D.meta.emphasis, "Advisor: "+D.meta.advisor]
-    .map(t=>`<span>${t}</span>`).join("");
-}
+function renderMast(){ document.getElementById("masttags").innerHTML=[`RedID ${D.meta.redid}`,D.meta.catalogYear+" catalog",D.meta.emphasis,"Advisor: "+D.meta.advisor].map(t=>`<span>${t}</span>`).join(""); }
 
 function renderDash(){
   const c=compute();
-  document.getElementById("totNum").textContent=c.totPlanned;
-  const num=document.getElementById("totNum"); num.classList.toggle("over",c.totPlanned>=D.meta.gradFloor);
-  document.getElementById("totOf").textContent=`/ ${D.meta.gradFloor} floor · ${D.meta.planTotal} plan`;
-  const pct=Math.min(100,c.totPlanned/D.meta.planTotal*100);
-  document.getElementById("totBar").style.width=pct+"%";
+  document.getElementById("totBig").textContent=c.totPlanned;
+  document.getElementById("totBig").classList.toggle("ok",c.totPlanned>=D.meta.gradFloor);
+  document.getElementById("totCap").innerHTML=`units planned · <b>${D.meta.gradFloor}</b> to graduate`;
+  document.getElementById("totBar").style.width=Math.min(100,c.totPlanned/D.meta.planTotal*100)+"%";
   document.getElementById("floorMark").style.left=(D.meta.gradFloor/D.meta.planTotal*100)+"%";
-
-  document.getElementById("areas").innerHTML = D.areas.map(a=>{
-    const p=c.planned[a.key], e=c.earned[a.key], met=p>=a.target;
-    const pw=Math.min(100,p/a.target*100), ew=Math.min(100,e/a.target*100);
-    return `<div class="area ${met?'met':''}">
-      <div class="a-top"><span class="a-lbl">${a.label}</span>
-        <span class="a-val"><b>${p}</b>/${a.target}</span></div>
-      <div class="abar" title="${e} done · ${p} planned">
-        <i style="width:${pw}%;background:${a.color}55"></i>
-        <i class="done" style="width:${ew}%;background:${a.color};margin-top:-7px"></i>
-      </div></div>`;
+  document.getElementById("cards").innerHTML=D.areas.map(a=>{
+    const p=c.planned[a.key],met=p>=a.target,pw=Math.min(100,p/a.target*100);
+    return `<div class="cat ${met?'met':''}">
+      <div class="ct"><span class="nm">${a.label}</span><span class="vu"><b>${p}</b>/${a.target}</span></div>
+      <div class="bar"><i style="width:${pw}%;background:${met?'var(--ok)':a.color}"></i></div>
+      <div class="status ${met?'':'short'}">${met?'✓ on track':(a.target-p)+' units to go'}</div>
+    </div>`;
   }).join("");
-
-  document.getElementById("overlays").innerHTML =
-    `<span class="ol-h">Overlays</span>` + D.overlays.map(o=>{
-      const on=c.ovl[o.key];
-      return `<span class="chip ${on?'on':'off'}" title="${o.label}">${o.label.split('(')[0].trim()}</span>`;
-    }).join("");
-
-  renderAlerts(c);
-}
-
-function renderAlerts(c){
-  const a=[];
-  // prereq order check
-  const placedTermIndex={};
-  D.plan.forEach((t,ti)=> (state.terms[t.id]||[]).forEach(s=>{ if(s.code) placedTermIndex[s.code]= (placedTermIndex[s.code]??ti); }));
-  D.plan.forEach((t,ti)=> (state.terms[t.id]||[]).forEach(s=>{
-    if(!s.code) return; const co=byCode[s.code]; if(!co||!co.prereq) return;
-    const pre=co.prereq;
-    if(byCode[pre]){ const pi=placedTermIndex[pre];
-      if(pi===undefined) a.push(`<b>${s.code}</b> needs <b>${pre}</b> first — not in the plan yet.`);
-      else if(pi>=ti) a.push(`<b>${s.code}</b> is scheduled before its prerequisite <b>${pre}</b>.`);
-    }
-  }));
-  // GPA / admission gates (informational, by running unit total at each term)
-  let running=c.transferUnits||0;
-  D.gates.forEach(g=>{ if(g.label) a.push({info:true,t:g.label}); });
-  if(D.milestones){/* milestones shown inline on terms */}
-  const wrap=document.getElementById("alerts");
-  wrap.innerHTML = a.map(x=> typeof x==="string"
-      ? `<div class="alert">⚠ <span>${x}</span></div>`
-      : `<div class="alert info">ℹ <span>${x.t}</span></div>`).join("");
+  document.getElementById("dashFoot").innerHTML = c.electives ? `Plus ${c.electives} free-elective units (count toward the 120 total).` : '';
 }
 
 function renderTransfer(){
-  const host=document.getElementById("transferRows");
-  let total=0;
+  const host=document.getElementById("transferRows"); let total=0;
   const head=`<div class="trow thead"><div>Code</div><div>Title</div><div>Units</div><div>Counts toward</div><div class="thsp"></div></div>`;
-  host.innerHTML = head + state.transfer.map((s,i)=>{
-    total += slotUnits(s)||0;
+  host.innerHTML=head+(state.transfer||[]).map((s,i)=>{ total+=slotUnits(s)||0;
     return `<div class="trow">
-      <input class="tx" value="${s.code||''}" data-ti="${i}" data-f="code" placeholder="AP / IB / course">
-      <input value="${s.title||''}" data-ti="${i}" data-f="title" placeholder="description">
+      <input class="tx" value="${esc(s.code||'')}" data-ti="${i}" data-f="code" placeholder="AP / IB / course">
+      <input value="${esc(s.title||'')}" data-ti="${i}" data-f="title" placeholder="description">
       <input type="number" min="0" step="1" value="${s.units??0}" data-ti="${i}" data-f="units">
       ${reqOptions(s.req,'ti',i)}
-      <button class="slot-x btn tiny" data-del-ti="${i}" title="remove">✕</button>
-    </div>`;
+      <button class="rm" data-del-ti="${i}" title="remove">✕</button></div>`;
   }).join("");
-  document.getElementById("transferSum").textContent = total? `${total} units applied` : "";
-  host.querySelectorAll("input,select").forEach(el=>{
-    el.addEventListener("change",e=>{
-      const i=+e.target.dataset.ti, f=e.target.dataset.f||"req";
-      let v=e.target.value;
-      if(f==="units"){ v=parseInt(v)||0; }
-      if(f==="req"){ state.transfer[i].req = v||null; }
-      else state.transfer[i][f]=v;
-      save(); renderDash(); renderTransfer(); renderChecklist();
-    });
-  });
-  host.querySelectorAll("[data-del-ti]").forEach(b=> b.addEventListener("click",e=>{
-    state.transfer.splice(+e.target.dataset.delTi,1); save(); renderTransfer(); renderDash(); renderChecklist();
+  document.getElementById("transferSum").textContent=total?`${total} units applied`:"";
+  host.querySelectorAll("input,select").forEach(el=>el.addEventListener("change",e=>{
+    const i=+e.target.dataset.ti,f=e.target.dataset.f||"req"; let v=e.target.value;
+    if(f==="units")v=parseInt(v)||0; if(f==="req")state.transfer[i].req=v||null; else state.transfer[i][f]=v;
+    save(); renderDash(); renderTransfer(); renderChecklist();
   }));
+  host.querySelectorAll("[data-del-ti]").forEach(b=>b.addEventListener("click",e=>{ state.transfer.splice(+e.currentTarget.dataset.delTi,1); save(); renderTransfer(); renderDash(); renderChecklist(); }));
 }
-function reqOptions(sel, kind, idx){
-  let o=`<option value="">— free elective —</option>`;
-  D.areas.forEach(a=>{
-    o+=`<optgroup label="${a.label}">`;
-    D.reqs.filter(r=>r.area===a.key && r.units!==0).forEach(r=>{
-      o+=`<option value="${r.key}" ${r.key===sel?'selected':''}>${r.label}</option>`;
-    });
-    o+=`</optgroup>`;
-  });
+function reqOptions(sel,kind,idx){ let o=`<option value="">— free elective —</option>`;
+  D.areas.forEach(a=>{ o+=`<optgroup label="${a.label}">`; D.reqs.filter(r=>r.area===a.key).forEach(r=>{ o+=`<option value="${r.key}" ${r.key===sel?'selected':''}>${r.label}</option>`; }); o+=`</optgroup>`; });
   return `<select data-${kind}="${idx}" data-f="req">${o}</select>`;
 }
 
 function renderYears(){
-  const years=[1,2,3,4];
   const host=document.getElementById("years");
-  const c=compute();
-  host.innerHTML = years.map(y=>{
-    const terms=D.plan.filter(t=>t.year===y);
-    let yu=0; terms.forEach(t=> (state.terms[t.id]||[]).forEach(s=> yu+=slotUnits(s)||0));
-    return `<div class="year">
-      <div class="year-h"><span class="yr">Year ${y}</span><span class="yu">${yu} units</span><span class="rule"></span></div>
-      <div class="terms">${terms.map(termCard).join("")}</div>
-    </div>`;
+  host.innerHTML=[1,2,3,4].map(y=>{ const terms=D.plan.filter(t=>t.year===y);
+    let yu=0; terms.forEach(t=>(state.terms[t.id]||[]).forEach(s=>yu+=slotUnits(s)||0));
+    return `<div class="year"><div class="year-h"><span class="yr">Year ${y}</span><span class="yu">${yu} units</span><span class="rule"></span></div>
+      <div class="terms">${terms.map(termCard).join("")}</div></div>`;
   }).join("");
   bindTerms();
 }
-function termCard(t){
-  const slots=state.terms[t.id]||[];
-  let tu=0; slots.forEach(s=> tu+=slotUnits(s)||0);
-  const ms=(D.milestones[t.id]||[]);
-  const abroad=/Abroad/i.test(t.label);
-  return `<div class="term ${abroad?'abroad':''}">
-    <div class="term-h"><span class="tl">${t.label}</span><span class="tu"><b>${tu}</b> units</span></div>
+function termCard(t){ const slots=state.terms[t.id]||[]; let tu=0; slots.forEach(s=>tu+=slotUnits(s)||0);
+  const ms=D.milestones[t.id]||[]; const abroad=/Abroad/i.test(t.label);
+  return `<div class="term ${abroad?'abroad':''}"><div class="term-h"><span class="tl">${t.label}</span><span class="tu"><b>${tu}</b> units</span></div>
     ${ms.length?`<div class="mstones">${ms.map(m=>`<div class="mstone">${m}</div>`).join("")}</div>`:""}
     <div class="slots">${slots.map((s,i)=>slotHtml(t.id,s,i)).join("")}</div>
-    <button class="addslot" data-add="${t.id}">+ Add course</button>
-  </div>`;
+    <button class="addslot" data-add="${t.id}">+ Add course</button></div>`;
 }
+function reqLabel(rk){ const r=reqByKey[rk]; if(!r)return rk; const a=areaByKey[r.area];
+  return (a.key==='ldge'||a.key==='udge') ? r.label : a.label; }
+function pillsHtml(s){
+  const c=s.code?byCode[s.code]:null;
+  if(!c){ return s.label?`<div class="pills"><span class="pill target">${esc(s.label)}</span></div>`:''; }
+  const out=[];
+  if(s.req&&reqByKey[s.req]) out.push(`<span class="pill primary">${esc(reqLabel(s.req))}</span>`);
+  else out.push(`<span class="pill none">free elective</span>`);
+  (c.overlays||[]).forEach(o=>{ if(overlayByKey[o]) out.push(`<span class="pill overlay" title="also satisfies">${esc(overlayShort(o))}</span>`); });
+  return `<div class="pills">${out.join("")}</div>`;
+}
+function overlayShort(o){ return (overlayByKey[o]?overlayByKey[o].label:o).replace('GE ','').split('(')[0].trim(); }
 function slotHtml(termId,s,i){
   const co=s.code?byCode[s.code]:null;
   if(co&&co.coid&&(!co.desc||co.units==null)) setTimeout(()=>ensureDetail(s.code),0);
-  const u=slotUnits(s);
-  const ar=slotArea(s); const area=ar?areaByKey[ar]:null;
-  const title = co? co.title : (s.label||"");
-  const empty = !s.code;
-  const elective = !ar && !!s.code;
-  const cls = empty?"empty":(elective?"elective":"");
-  // flags
+  const u=slotUnits(s); const ar=slotArea(s); const area=ar?areaByKey[ar]:null;
+  const empty=!s.code, elective=!ar&&!!s.code;
+  const cls=empty?"empty":(elective?"elective":"");
+  const codeHtml=co?(co.url?`<a class="code" href="${co.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(s.code)}</a>`:`<span class="code">${esc(s.code)}</span>`):`<span class="code placeholder">${esc(s.label?s.label:"+ choose a course")}</span>`;
+  const titleHtml=co?`<span class="ttl">${esc(co.title||'')}</span>`:(s.label&&empty?`<span class="ttl">choose a course for this slot</span>`:'');
   let flags="";
-  if(co && co.cOrBetter) flags+=`<span class="flag c" title="Must earn C or better">C+</span>`;
-  if(co && co.prereq) flags+=`<span class="flag pre" title="Prerequisite: ${co.prereq}">pre</span>`;
-  const codeHtml = co
-    ? (co.url? `<a class="code" href="${co.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${s.code}</a>` : `<span class="code">${s.code}</span>`)
-    : `<span class="code" style="color:var(--muted)">${s.label?"":"+ pick"}</span>`;
-  const dotc = area? area.color : "#cdbfa6";
+  if(co&&co.cOrBetter)flags+=`<span class="flag c" title="Must earn C or better">C or better</span>`;
+  if(co&&co.prereq)flags+=`<span class="flag pre" title="Prerequisite: ${esc(co.prereq)}">prereq</span>`;
+  const dotc=area?area.color:"#cdbfa6";
   return `<div class="slot ${cls}" data-term="${termId}" data-i="${i}">
-    <button class="x" data-rm title="remove">✕</button>
-    <div class="slot-main" data-pick>
-      <span class="dot" style="background:${dotc};margin-top:5px"></span>
-      ${codeHtml}
-      <span class="ttl">${empty?(s.label||"Choose a course"):title}</span>
-      <span class="un ${u==null?'q':''}">${u==null?"?":u}</span>
+    <div class="slot-top">
+      <span class="dot" style="background:${dotc}"></span>
+      <div class="pickwrap" data-pick>${codeHtml}${titleHtml}</div>
+      <span class="un ${u==null?'q':''}">${u==null?'?':u}</span>
+      <button class="rm" data-rm title="remove course">✕</button>
     </div>
-    <div class="slot-foot">
-      ${reqOptionsSlot(s.req)}
-      ${flags}
-      <label class="done"><input type="checkbox" ${s.done?'checked':''} data-done> done</label>
-    </div>
-    ${co&&co.desc?`<div class="slot-desc">${co.desc.slice(0,150)}${co.desc.length>150?'…':''}</div>`:''}
+    ${co&&co.desc?`<div class="slot-desc">${esc(co.desc.slice(0,150))}${co.desc.length>150?'…':''}</div>`:''}
+    ${pillsHtml(s)}
+    <div class="slot-foot">${flags}<label class="done"><input type="checkbox" ${s.done?'checked':''} data-done> done</label></div>
   </div>`;
 }
-function reqOptionsSlot(sel){
-  let o=`<option value="">free elective</option>`;
-  D.areas.forEach(a=>{ o+=`<optgroup label="${a.label}">`;
-    D.reqs.filter(r=>r.area===a.key && r.units!==0).forEach(r=>{
-      o+=`<option value="${r.key}" ${r.key===sel?'selected':''}>${r.label}</option>`; });
-    o+=`</optgroup>`; });
-  return `<select class="reqsel" data-reqsel>${o}</select>`;
-}
 function bindTerms(){
-  document.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",e=>{
-    const tid=e.target.dataset.add; state.terms[tid].push({code:null,req:null,label:null,units:null,manual:null,done:false});
-    save(); renderYears(); openPicker(tid, state.terms[tid].length-1,false);
-  }));
-  document.querySelectorAll(".slot").forEach(sl=>{
-    const tid=sl.dataset.term, i=+sl.dataset.i;
+  document.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",e=>{ const tid=e.currentTarget.dataset.add;
+    state.terms[tid].push({code:null,req:null,label:null,units:null,manual:null,done:false}); save(); renderYears(); openPicker(tid,state.terms[tid].length-1,false); }));
+  document.querySelectorAll(".slot").forEach(sl=>{ const tid=sl.dataset.term,i=+sl.dataset.i;
     sl.querySelector("[data-pick]").addEventListener("click",()=>openPicker(tid,i,false));
-    sl.querySelector("[data-rm]").addEventListener("click",ev=>{ ev.stopPropagation();
-      state.terms[tid].splice(i,1); save(); renderYears(); renderDash(); renderChecklist(); });
-    sl.querySelector("[data-done]").addEventListener("change",ev=>{ ev.stopPropagation();
-      state.terms[tid][i].done=ev.target.checked; save(); renderDash(); renderChecklist(); });
-    sl.querySelector("[data-reqsel]").addEventListener("change",ev=>{ ev.stopPropagation();
-      state.terms[tid][i].req=ev.target.value||null; save(); renderYears(); renderDash(); renderChecklist(); });
+    sl.querySelector("[data-rm]").addEventListener("click",ev=>{ev.stopPropagation(); state.terms[tid].splice(i,1); save(); renderYears(); renderDash(); renderChecklist();});
+    sl.querySelector("[data-done]").addEventListener("change",ev=>{ev.stopPropagation(); state.terms[tid][i].done=ev.target.checked; save(); renderDash(); renderChecklist();});
   });
 }
 
-/* ---------------- checklist ---------------- */
+/* ---------- checklist view (dynamic) ---------- */
 function renderChecklist(){
   const c=compute();
-  document.getElementById("checklist").innerHTML = D.areas.map(a=>{
-    const items=D.reqs.filter(r=>r.area===a.key);
-    return `<div class="cl-area"><h4 style="color:${a.color}">${a.label}
-       <span style="font-family:Archivo;font-size:11px;color:var(--muted);font-weight:400">${c.planned[a.key]}/${a.target}</span></h4>
-      ${items.map(r=>{const on=c.reqFilled[r.key];
-        return `<div class="cl-item ${on?'on':'off'}"><span class="mk">${on?'✓':'○'}</span>${r.label}${r.units===0?' <span style="color:var(--muted2)">(overlay)</span>':''}</div>`;}).join("")}
-    </div>`;
-  }).join("") + `<div class="cl-area"><h4 style="color:var(--muted)">Overlays (no units)</h4>
-    ${D.overlays.map(o=>{const on=c.ovl[o.key];return `<div class="cl-item ${on?'on':'off'}"><span class="mk">${on?'✓':'○'}</span>${o.label}</div>`;}).join("")}</div>`;
+  let dash=`<tr><th>Category</th><th>Planned</th><th>Required</th><th style="text-align:right">Status</th></tr>`;
+  D.areas.forEach(a=>{ const p=c.planned[a.key],met=p>=a.target;
+    dash+=`<tr><td class="c-nm">${a.label}</td><td class="c-v"><b>${p}</b> units</td><td class="c-v">${a.target} units</td>
+      <td class="c-st ${met?'yes':'no'}">${met?'✓ met':(a.target-p)+' to go'}</td></tr>`; });
+  document.getElementById("clDash").innerHTML=dash;
+  let body="";
+  D.areas.forEach(a=>{ const reqs=D.reqs.filter(r=>r.area===a.key); const p=c.planned[a.key];
+    body+=`<div class="cl-sec"><div class="cl-h"><h2>${a.label}</h2><span class="u">${p}/${a.target} units</span></div>`;
+    reqs.forEach(r=>{ const rc=c.reqCourse[r.key]; const has=rc&&rc.code; const term=c.termOf[r.key];
+      const courseTxt = has ? `<span class="code">${esc(rc.code)}</span> <span class="tt">${esc((byCode[rc.code]&&byCode[rc.code].title)||'')}</span>`
+                            : `<span class="tt">${esc(rc&&rc.label?rc.label:'choose a course')}</span>`;
+      body+=`<div class="cl-row"><div class="rq">${esc(r.label)}</div>
+        <div class="cs">${courseTxt}</div>
+        <div class="meta"><span class="termpill ${term?'':'tbd'}">${term||'to plan'}</span><span class="ck ${has?'yes':'no'}">${has?'✓':'○'}</span></div></div>`;
+    });
+    body+=`</div>`;
+  });
+  body+=`<div class="cl-sec"><div class="cl-h"><h2>Graduation Overlays</h2><span class="u">no extra units</span></div>`;
+  D.overlays.forEach(o=>{ const oc=c.overlayCourse[o.key]; const has=!!oc;
+    const note = (o.key==='socbeh'&&has)?'<div class="cl-note">SDSU wants 3 social-science courses from 2+ departments — ECON is one dept; IB History likely fills the 2nd. Confirm.</div>':'';
+    const courseTxt = has?`<span class="code">${esc(oc.code)}</span>`:`<span class="tt">not yet satisfied</span>`;
+    body+=`<div class="cl-row"><div class="rq">${esc(o.label)}</div><div class="cs">${courseTxt}${note}</div>
+      <div class="meta"><span class="termpill ${has&&oc.term?'':'tbd'}">${has?(oc.term||''):'to plan'}</span><span class="ck ${has?'yes':'no'}">${has?'✓':'○'}</span></div></div>`;
+  });
+  body+=`</div>`;
+  body+=`<div class="cl-callout"><h3>GPA gates &amp; milestones</h3><ul>${D.gates.map(g=>`<li>${esc(g.label)}</li>`).join("")}</ul></div>`;
+  body+=`<div class="cl-callout" style="border-left-color:var(--ok)"><h3>Transfer credit notes</h3><ul>
+    <li><b>IB History</b> — the one likely to do real work, as the second-department Social Science course. Confirm SDSU grants it social-science GE credit.</li>
+    <li><b>French (LCC, IB French SL)</b> — not her major language; Humanities is already covered by Spanish, so these are elective units.</li>
+    <li><b>AP Statistics</b> — covers GE Math, but STAT 119 already does; likely redundant.</li></ul></div>`;
+  document.getElementById("clBody").innerHTML=body;
 }
 
-/* ---------------- picker ---------------- */
-function openPicker(termId,slotIdx,isTransfer){
-  picker={termId,slotIdx,isTransfer};
-  const slot = isTransfer? state.transfer[slotIdx] : state.terms[termId][slotIdx];
-  document.getElementById("pickerReq").textContent = slot.label? "Suggested: "+slot.label : (slot.req&&reqByKey[slot.req]? "For: "+reqByKey[slot.req].label : "Any course counts toward graduation units");
+/* ---------- picker ---------- */
+function openPicker(termId,slotIdx,isTransfer){ picker={termId,slotIdx,isTransfer};
+  const slot=isTransfer?state.transfer[slotIdx]:state.terms[termId][slotIdx];
+  document.getElementById("pickerReq").textContent=slot.label?"Suggested: "+slot.label:(slot.req&&reqByKey[slot.req]?"For: "+reqLabel(slot.req):"Any course counts toward graduation units");
   const inp=document.getElementById("pickerSearch"); inp.value="";
-  document.getElementById("modal").classList.add("show");
-  // prioritise courses matching the slot's requirement
-  fillPicker("", slot.req);
-  inp.focus();
-  inp.oninput=()=>fillPicker(inp.value.trim(), slot.req);
+  document.getElementById("modal").classList.add("show"); fillPicker("",slot.req); inp.focus();
+  inp.oninput=()=>fillPicker(inp.value.trim(),slot.req);
 }
-function fillPicker(q, reqKey){
-  const ql=q.toLowerCase();
-  let list=Object.values(byCode);
-  if(ql) list=list.filter(c=> c.code.toLowerCase().includes(ql) || (c.title&&c.title.toLowerCase().includes(ql)));
-  // sort: req-matches first, then verified-units, then code
-  list.sort((a,b)=>{
-    const am=reqKey&&a.reqs.includes(reqKey)?0:1, bm=reqKey&&b.reqs.includes(reqKey)?0:1;
-    if(am!==bm) return am-bm;
-    const au=a.units==null?1:0, bu=b.units==null?1:0; if(au!==bu) return au-bu;
-    return a.code.localeCompare(b.code);
-  });
+function fillPicker(q,reqKey){ const ql=q.toLowerCase(); let list=Object.values(byCode);
+  if(ql)list=list.filter(c=>c.code.toLowerCase().includes(ql)||(c.title&&c.title.toLowerCase().includes(ql)));
+  list.sort((a,b)=>{ const am=reqKey&&a.reqs.includes(reqKey)?0:1,bm=reqKey&&b.reqs.includes(reqKey)?0:1; if(am!==bm)return am-bm;
+    const au=a.units==null?1:0,bu=b.units==null?1:0; if(au!==bu)return au-bu; return a.code.localeCompare(b.code); });
   const shown=list.slice(0,180);
   document.getElementById("pickerCount").textContent=`${list.length} match${list.length===1?'':'es'}${list.length>180?' (showing 180)':''}`;
-  document.getElementById("pickerList").innerHTML = shown.map(c=>{
-    const degree=c.reqs.length>0||(c.overlays&&c.overlays.length>0);
+  document.getElementById("pickerList").innerHTML=shown.map(c=>{ const degree=c.reqs.length>0||(c.overlays&&c.overlays.length>0);
     const tags=c.reqs.slice(0,3).map(rk=>reqByKey[rk]?areaByKey[reqByKey[rk].area].label:rk);
-    return `<div class="pli ${degree?'':'notdeg'}" data-code="${c.code}">
-      <span class="pc">${c.code}</span>
-      <span class="pttl">${c.title&&c.title!==c.code?c.title:'<i>title loads on catalog refresh</i>'}
-        ${degree?`<div class="ptags">${tags.map(t=>`<span class="ptag">${t}</span>`).join("")}</div>`:`<small>· counts as free elective</small>`}
-      </span>
-      <span class="pun">${c.units==null?'?':c.units}</span>
-    </div>`;
-  }).join("") || `<div style="padding:20px;color:var(--muted);text-align:center">No match. You can still type any code; add it as incoming credit if it's transfer.</div>`;
-  document.querySelectorAll(".pli").forEach(el=> el.addEventListener("click",()=>choose(el.dataset.code)));
+    return `<div class="pli ${degree?'':'notdeg'}" data-code="${esc(c.code)}"><span class="pc">${esc(c.code)}</span>
+      <span class="pttl">${c.title&&c.title!==c.code?esc(c.title):'<i>title loads on catalog refresh</i>'}${degree?`<div class="ptags">${tags.map(t=>`<span class="ptag">${esc(t)}</span>`).join("")}</div>`:' · counts as free elective'}</span>
+      <span class="pun">${c.units==null?'?':c.units}</span></div>`;
+  }).join("")||`<div style="padding:20px;color:var(--muted);text-align:center">No match. Type any code; if it's transfer credit, add it in the Incoming &amp; transfer section.</div>`;
+  document.querySelectorAll(".pli").forEach(el=>el.addEventListener("click",()=>choose(el.dataset.code)));
 }
-function choose(code){
-  const co=byCode[code];
-  const slot = picker.isTransfer? state.transfer[picker.slotIdx] : state.terms[picker.termId][picker.slotIdx];
+function choose(code){ const co=byCode[code]; const slot=picker.isTransfer?state.transfer[picker.slotIdx]:state.terms[picker.termId][picker.slotIdx];
   slot.code=code;
-  // auto-assign requirement: keep current if course satisfies it, else first satisfiable still-open req
   const c=compute();
-  if(!(slot.req && co.reqs.includes(slot.req))){
-    const open = co.reqs.find(rk=> !c.reqFilled[rk]);
-    slot.req = open || co.reqs[0] || null;
-  }
-  if(co.units!=null) slot.units=co.units;
-  slot.manual=null;
-  if(co.coid) ensureDetail(code);
+  if(!(slot.req&&co.reqs.includes(slot.req))){ const open=co.reqs.find(rk=>reqByKey[rk]&&!c.reqCourse[rk]); slot.req=open||co.reqs.find(rk=>reqByKey[rk])||null; }
+  if(co.units!=null)slot.units=co.units; slot.manual=null;
+  if(co.coid)ensureDetail(code);
   closePicker(); save(); render();
 }
 function closePicker(){ document.getElementById("modal").classList.remove("show"); }
-document.getElementById("pickerClear").addEventListener("click",()=>{
-  const slot = picker.isTransfer? state.transfer[picker.slotIdx] : state.terms[picker.termId][picker.slotIdx];
-  slot.code=null; slot.req= slot.req || null; slot.manual=null;
-  closePicker(); save(); render();
-});
-document.getElementById("modal").addEventListener("click",e=>{ if(e.target.id==="modal") closePicker(); });
+document.getElementById("pickerClear").addEventListener("click",()=>{ const slot=picker.isTransfer?state.transfer[picker.slotIdx]:state.terms[picker.termId][picker.slotIdx];
+  slot.code=null; slot.manual=null; closePicker(); save(); render(); });
+document.getElementById("modal").addEventListener("click",e=>{ if(e.target.id==="modal")closePicker(); });
 
-/* ---------------- top controls ---------------- */
-document.getElementById("addTransfer").addEventListener("click",()=>{
-  state.transfer.push({code:"",title:"",units:0,req:null,done:true}); save(); renderTransfer(); });
-document.getElementById("resetBtn").addEventListener("click",()=>{
-  if(confirm("Reset the whole plan back to Jason Tan's advisor study plan? Your edits will be lost.")){
-    state=seedState(); save(); render(); }});
-document.getElementById("checklistBtn").addEventListener("click",()=>{
-  const b=document.getElementById("checklistBlock"); b.style.display = b.style.display==="none"?"block":"none";
-  if(b.style.display!=="none") b.scrollIntoView({behavior:"smooth",block:"start"}); });
-document.getElementById("expandBtn").addEventListener("click",()=>{
-  document.getElementById("dash").classList.toggle("expand"); });
+/* ---------- view toggle + controls ---------- */
+function showView(which){
+  document.getElementById("viewPlanner").classList.toggle("on",which==='planner');
+  document.getElementById("viewChecklist").classList.toggle("on",which==='checklist');
+  document.getElementById("tabPlanner").classList.toggle("on",which==='planner');
+  document.getElementById("tabChecklist").classList.toggle("on",which==='checklist');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.getElementById("tabPlanner").addEventListener("click",()=>showView('planner'));
+document.getElementById("tabChecklist").addEventListener("click",()=>showView('checklist'));
+document.getElementById("addTransfer").addEventListener("click",()=>{ state.transfer.push({code:"",title:"",units:0,req:null,done:true}); save(); renderTransfer(); });
+document.getElementById("resetBtn").addEventListener("click",()=>{ if(confirm("Reset the whole plan back to Jason Tan's advisor study plan? Your edits will be lost.")){ state=seedState(); normalizeAssignments(); save(); render(); }});
 document.getElementById("updateCatBtn").addEventListener("click",async()=>{
-  const token=prompt("Catalog refresh token (the REFRESH_TOKEN you set on the Worker):");
-  if(!token) return;
-  const catoid=(prompt("Catalog year to load — catoid (2026-27 = 12; bump it when SDSU publishes a new catalog):", String(D.meta.catoid||12))||D.meta.catoid).trim();
-  const btn=document.getElementById("updateCatBtn"); const old=btn.textContent; btn.disabled=true;
-  let start=1, total=0, guard=0, ok=true;
-  try{
-    while(start && guard++<80){
-      btn.textContent=`⟳ Updating… p${start}`;
-      const r=await fetch(`/api/refresh?start=${start}&catoid=${encodeURIComponent(catoid)}`,
-        {method:"POST",headers:{"X-Refresh-Token":token}});
-      const j=await r.json().catch(()=>({}));
-      if(!r.ok){ alert("Refresh failed: "+(j.error||("HTTP "+r.status))); ok=false; break; }
-      total=j.total||total; btn.textContent=`⟳ ${total} courses…`;
-      start=j.nextStart;
-      if(j.done) break;
-    }
-    if(ok) note(`Catalog updated — ${total} courses`);
+  const token=prompt("Catalog refresh token (the REFRESH_TOKEN set on the Worker):"); if(!token)return;
+  const catoid=(prompt("Catalog year to load — catoid (2026-27 = 12):",String(D.meta.catoid||12))||D.meta.catoid).trim();
+  const btn=document.getElementById("updateCatBtn"),old=btn.textContent; btn.disabled=true; let start=1,total=0,guard=0,ok=true;
+  try{ while(start&&guard++<80){ btn.textContent=`⟳ Updating… p${start}`;
+    const r=await fetch(`/api/refresh?start=${start}&catoid=${encodeURIComponent(catoid)}`,{method:"POST",headers:{"X-Refresh-Token":token}});
+    const j=await r.json().catch(()=>({})); if(!r.ok){ alert("Refresh failed: "+(j.error||("HTTP "+r.status))); ok=false; break; }
+    total=j.total||total; btn.textContent=`⟳ ${total} courses…`; start=j.nextStart; if(j.done)break; }
+    if(ok)note(`Catalog updated — ${total} courses`);
   }catch(e){ alert("Refresh error: "+(e&&e.message||e)); }
-  btn.disabled=false; btn.textContent=old;
-  loadCatalog();
+  btn.disabled=false; btn.textContent=old; loadCatalog();
 });
-document.addEventListener("keydown",e=>{ if(e.key==="Escape") closePicker(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape")closePicker(); });
+function esc(s){ return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 load();
 </script>
