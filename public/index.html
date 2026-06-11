@@ -549,21 +549,20 @@ function isChoiceReq(reqKey){
 }
 // GE catalog links for each choice requirement key
 const GE_CATALOG_URLS={
-  // Exact base URLs from Jason Tan's advisor study plan spreadsheet (catoid=11, poid=10640)
-  // Fragments follow Acalog CMS slug pattern; #5bbiologicalscience confirmed from advisor example
-  "oral":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#1oralcommunication",
-  "written":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#2writtencommunication",
-  "critical":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#3criticalthinking",
+  // URLs confirmed from live site at abby-degree-map.kroadman.workers.dev
+  "written":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#1aenglishcomposition",
+  "oral":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#1coralcommunication",
+  "critical":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#1bcriticalthinking",
   "physci":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#5aphysicalscience",
   "lifesci":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#5bbiologicalscience",
   "lab":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#5claboratory",
-  "arts":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#6aarts",
+  "arts":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#3aarts",
   "ethnic":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#fethnicstudies",
   "rp_we":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
-  "gwar":"https://catalog.sdsu.edu/content.php?catoid=11&navoid=1002",
-  "expl_nat":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#explorationsnaturalsciences",
+  "gwar":"https://catalog.sdsu.edu/content.php?catoid=11&navoid=1002#ii-graduation-writing-assessment-requirement-gwar-",
+  "expl_nat":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#area2or5",
   "expl_soc":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#explorationssocialbehavioralsciences",
-  "expl_hum":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#explorationshumanities",
+  "expl_hum":"https://catalog.sdsu.edu/preview_program.php?catoid=11&poid=10640#area3artsandhumanities",
   "focus1":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
   "focus2":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
   "lm_1":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
