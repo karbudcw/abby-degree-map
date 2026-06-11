@@ -217,107 +217,108 @@ footer b{color:var(--scarlet)}
 
 /* ── Mobile (≤600px) ── */
 @media (max-width:600px){
-  /* Base sizing */
-  body{font-size:16px}
+  /* Base sizing — all body text 2px larger than desktop */
+  body{font-size:17px}
 
   /* Header */
   header.mast{padding:22px 16px 8px}
-  .mast h1{font-size:clamp(32px,9vw,42px)}
-  .mast p.sub{font-size:16px;line-height:1.55}
-  .mast .tags{font-size:14px;gap:8px}
-  .mast .tags span{padding:5px 13px}
-  .kicker{font-size:12.5px;letter-spacing:.16em}
+  .mast h1{font-size:clamp(34px,10vw,44px)}
+  .mast p.sub{font-size:17px;line-height:1.55}
+  .mast .tags{font-size:15px;gap:8px}
+  .mast .tags span{padding:6px 14px}
+  .kicker{font-size:13px;letter-spacing:.16em}
 
   /* Toolbar: stack tabs above buttons */
   .toggle{flex-direction:column;align-items:stretch;gap:8px;padding:0 14px;margin-top:14px}
   .seg{width:100%}
-  .seg button{flex:1;font-size:15px;padding:10px 8px}
+  .seg button{flex:1;font-size:16px;padding:11px 8px}
   .toggle .spacer{display:none}
   .toggle .ctl{flex-wrap:wrap;gap:8px}
-  .btn{font-size:14px;padding:10px 14px;flex:1;text-align:center}
+  .btn{font-size:15px;padding:11px 14px;flex:1;text-align:center}
 
   /* Wrap */
   .wrap{padding:0 14px 100px}
 
   /* Dashboard summary panel */
   .dash{padding:16px 14px}
-  .dash-summary .ds-label{font-size:17px}
-  .dash-summary .ds-frac b{font-size:17px}
-  .bar-lbl{font-size:12px}
-  .bar-row{grid-template-columns:52px 1fr 28px;gap:6px}
-  .bar-val{font-size:13px}
-  .dash-top .status{font-size:13px}
+  .dash-summary .ds-label{font-size:19px}
+  .dash-summary .ds-frac b{font-size:19px}
+  .dash-summary .ds-frac{font-size:16px}
+  .bar-lbl{font-size:13px}
+  .bar-row{grid-template-columns:56px 1fr 30px;gap:6px}
+  .bar-val{font-size:15px}
+  .dash-top .status{font-size:15px}
 
   /* Category cards: single column */
   .cards{grid-template-columns:1fr;gap:10px}
-  .cat .nm{font-size:15px}
-  .cat .vu{font-size:13px}
-  .cat .status{font-size:13px}
+  .cat .nm{font-size:16px}
+  .cat .vu{font-size:15px}
+  .cat .status{font-size:14px}
   .cat .bar{height:8px}
 
-  /* Transfer credit table: stack into single column per row */
+  /* Transfer credit table */
   .trow{display:flex;flex-wrap:wrap;gap:8px;padding:10px 0}
-  .trow input,.trow select{font-size:15px;padding:9px 10px}
-  .trow .tdone{font-size:14px}
-  .thead{display:none}  /* hide header row — labels come from placeholder text */
-  .tdesc{font-size:14px}
+  .trow input,.trow select{font-size:16px;padding:10px 11px}
+  .trow .tdone{font-size:15px}
+  .thead{display:none}
+  .tdesc{font-size:15px}
 
   /* Year headings */
-  .year-h .yr{font-size:20px}
-  .year-h .yu{font-size:14px}
+  .year-h .yr{font-size:22px}
+  .year-h .yu{font-size:15px}
 
   /* Term header */
-  .term-h .tl{font-size:17px}
-  .term-h .tu{font-size:14px}
+  .term-h .tl{font-size:18px}
+  .term-h .tu{font-size:15px}
 
   /* Course slots */
-  .slot{padding:11px 12px}
-  .slot .code{font-size:15px}
-  .slot .ttl{font-size:13px}
-  .slot .un{font-size:15px}
-  .slot .rm{width:28px;height:28px;font-size:15px}
-  .slot-desc{font-size:13px}
-  .pill{font-size:12px;padding:3px 10px}
-  .flag{font-size:12px;padding:2px 7px}
-  .slot .done-lbl{font-size:13px}
-  .drag-handle{font-size:16px}
-  .addslot{font-size:14px;padding:10px}
+  .slot{padding:12px 13px}
+  .slot .code{font-size:16px}
+  .slot .ttl{font-size:14px}
+  .slot .un{font-size:16px}
+  .slot .rm{width:30px;height:30px;font-size:16px}
+  .slot-desc{font-size:14px}
+  .pill{font-size:13px;padding:4px 11px}
+  .flag{font-size:13px;padding:3px 8px}
+  .slot .done-lbl{font-size:14px}
+  .drag-handle{font-size:17px}
+  .addslot{font-size:15px;padding:11px}
 
   /* Milestone notes */
-  .mstone{font-size:13px}
+  .mstone{font-size:14px}
 
-  /* Checklist table: scrollable, collapse to key columns */
+  /* Checklist */
   .cl-dash{overflow-x:auto}
-  .cl-dash th,.cl-dash td{font-size:13px;padding:9px 10px;white-space:normal}
+  .cl-dash th,.cl-dash td{font-size:14px;padding:10px 11px;white-space:normal}
   .cl-dash td.c-v{white-space:nowrap}
-  .cl-h h2{font-size:17px}
-  .cl-h .u{font-size:13px}
-  .cl-row{grid-template-columns:1fr;gap:4px;padding:10px 4px}
-  .cl-row .rq{font-size:15px}
-  .cl-row .cs{font-size:13px}
+  .cl-h h2{font-size:19px}
+  .cl-h .u{font-size:14px}
+  .cl-row{grid-template-columns:1fr;gap:4px;padding:11px 4px}
+  .cl-row .rq{font-size:16px}
+  .cl-row .cs{font-size:14px}
   .cl-row .meta{justify-content:flex-start;margin-top:2px}
-  .cl-row .cs .tt{font-size:13px}
-  .termpill{font-size:12px;padding:3px 10px}
-  .ck{font-size:17px}
-  .ck-label{font-size:11px}
-  .cl-callout li{font-size:14px}
+  .cl-row .cs .tt{font-size:14px}
+  .termpill{font-size:13px;padding:4px 11px}
+  .ck{font-size:19px}
+  .ck-label{font-size:12px}
+  .cl-callout li{font-size:15px}
 
-  /* Picker modal */
+  /* Picker modal — sheet from bottom */
   .modal{padding:0;align-items:flex-end}
   .picker{width:100%;max-height:90vh;border-radius:18px 18px 0 0}
-  .picker-h .pt{font-size:20px}
-  .picker-h .ps{font-size:14px}
-  .psearch input{font-size:16px;padding:11px 14px}
-  .pli{padding:12px 13px}
-  .pli .pc{font-size:16px}
-  .pli .pttl{font-size:14px}
-  .pli .pun{font-size:14px}
-  .pli .ptag{font-size:11px;padding:2px 6px}
-  .picker-f{font-size:14px;padding:13px 16px}
-  .clearbtn{font-size:15px}
+  .picker-h .pt{font-size:21px}
+  .picker-h .ps{font-size:15px}
+  .psearch input{font-size:17px;padding:12px 14px}
+  .pli{padding:13px 14px}
+  .pli .pc{font-size:17px}
+  .pli .pttl{font-size:15px}
+  .pli .pun{font-size:15px}
+  .pli .ptag{font-size:12px;padding:2px 7px}
+  .picker-f{font-size:15px;padding:13px 16px}
+  .clearbtn{font-size:16px}
 
   /* Footer */
-  footer{font-size:13px;padding:0 14px}
+  footer{font-size:14px;padding:0 14px}
 }
 </style>
 </head>
