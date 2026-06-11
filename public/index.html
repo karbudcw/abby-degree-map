@@ -84,7 +84,7 @@ section.block{background:var(--paper);border:1px solid var(--line);border-radius
 .year-h .yr{font-family:'Fraunces';font-size:22px;font-weight:600}
 .year-h .yu{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
 .year-h .rule{flex:1;height:1px;background:var(--line)}
-.terms{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.terms{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.terms.two-col{grid-template-columns:repeat(2,1fr);gap:20px}
 .term{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden}
 .term.abroad{border-color:var(--gold-deep);box-shadow:0 0 0 1px var(--gold-deep) inset,var(--shadow)}
 .term-h{padding:12px 14px 10px;border-bottom:1px solid var(--line-soft);display:flex;justify-content:space-between;align-items:baseline}
@@ -207,15 +207,116 @@ footer b{color:var(--scarlet)}
 .picker-f{padding:10px 16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted)}
 .clearbtn{color:var(--scarlet);cursor:pointer;font-weight:600}
 
+/* ── Tablet (≤900px) ── */
 @media (max-width:900px){
   .cards{grid-template-columns:repeat(2,1fr)}
-  .terms{grid-template-columns:1fr}
+  .terms{grid-template-columns:1fr !important}  /* always single-col on mobile, summer or not */
   .trow{grid-template-columns:1fr 1fr;gap:6px}.trow .thsp{display:none}.trow .tdone{justify-self:start}
   .cl-row{grid-template-columns:1fr auto}
 }
-@media (max-width:560px){
-  .wrap{padding:0 12px 80px}.cards{grid-template-columns:1fr 1fr}
-  .total .big{font-size:36px}
+
+/* ── Mobile (≤600px) ── */
+@media (max-width:600px){
+  /* Base sizing */
+  body{font-size:16px}
+
+  /* Header */
+  header.mast{padding:20px 14px 6px}
+  .mast h1{font-size:clamp(28px,8vw,38px)}
+  .mast p.sub{font-size:15px}
+  .mast .tags{font-size:13px}
+  .mast .tags span{padding:4px 11px}
+  .kicker{font-size:11px;letter-spacing:.14em}
+
+  /* Toolbar: stack tabs above buttons */
+  .toggle{flex-direction:column;align-items:stretch;gap:8px;padding:0 14px;margin-top:14px}
+  .seg{width:100%}
+  .seg button{flex:1;font-size:15px;padding:10px 8px}
+  .toggle .spacer{display:none}
+  .toggle .ctl{flex-wrap:wrap;gap:8px}
+  .btn{font-size:14px;padding:10px 14px;flex:1;text-align:center}
+
+  /* Wrap */
+  .wrap{padding:0 14px 100px}
+
+  /* Dashboard summary panel */
+  .dash{padding:16px 14px}
+  .dash-summary .ds-label{font-size:17px}
+  .dash-summary .ds-frac b{font-size:17px}
+  .bar-lbl{font-size:12px;width:48px}
+  .bar-val{font-size:13px}
+  .dash-top .status{font-size:13px}
+
+  /* Category cards: single column */
+  .cards{grid-template-columns:1fr;gap:10px}
+  .cat .nm{font-size:15px}
+  .cat .vu{font-size:13px}
+  .cat .status{font-size:13px}
+  .cat .bar{height:8px}
+
+  /* Transfer credit table: stack into single column per row */
+  .trow{display:flex;flex-wrap:wrap;gap:8px;padding:10px 0}
+  .trow input,.trow select{font-size:15px;padding:9px 10px}
+  .trow .tdone{font-size:14px}
+  .thead{display:none}  /* hide header row — labels come from placeholder text */
+  .tdesc{font-size:14px}
+
+  /* Year headings */
+  .year-h .yr{font-size:20px}
+  .year-h .yu{font-size:14px}
+
+  /* Term header */
+  .term-h .tl{font-size:17px}
+  .term-h .tu{font-size:14px}
+
+  /* Course slots */
+  .slot{padding:11px 12px}
+  .slot .code{font-size:15px}
+  .slot .ttl{font-size:13px}
+  .slot .un{font-size:15px}
+  .slot .rm{width:28px;height:28px;font-size:15px}
+  .slot-desc{font-size:13px}
+  .pill{font-size:12px;padding:3px 10px}
+  .flag{font-size:12px;padding:2px 7px}
+  .slot .done-lbl{font-size:13px}
+  .drag-handle{font-size:16px}
+  .addslot{font-size:14px;padding:10px}
+
+  /* Milestone notes */
+  .mstone{font-size:13px}
+
+  /* Checklist table: scrollable, collapse to key columns */
+  .cl-dash{overflow-x:auto}
+  .cl-dash th,.cl-dash td{font-size:13px;padding:9px 10px;white-space:normal}
+  .cl-dash td.c-v{white-space:nowrap}
+  .cl-h h2{font-size:17px}
+  .cl-h .u{font-size:13px}
+  .cl-row{grid-template-columns:1fr;gap:4px;padding:10px 4px}
+  .cl-row .rq{font-size:15px}
+  .cl-row .cs{font-size:13px}
+  .cl-row .meta{justify-content:flex-start;margin-top:2px}
+  .cl-row .cs .tt{font-size:13px}
+  .termpill{font-size:12px;padding:3px 10px}
+  .ck{font-size:17px}
+  .ck-label{font-size:11px}
+  .cl-callout li{font-size:14px}
+
+  /* Picker modal */
+  .modal{padding:0;align-items:flex-end}
+  .picker{width:100%;max-height:90vh;border-radius:18px 18px 0 0}
+  .picker-h .pt{font-size:20px}
+  .picker-h .ps{font-size:14px}
+  .psearch input{font-size:16px;padding:11px 14px}
+  .pli{padding:12px 13px}
+  .pli .pc{font-size:16px}
+  .pli .pttl{font-size:14px}
+  .pli .pun{font-size:14px}
+  .pli .ptag{font-size:11px;padding:2px 6px}
+  .picker-f{font-size:14px;padding:13px 16px}
+  .clearbtn{font-size:15px}
+
+  /* Footer */
+  footer{font-size:13px;padding:0 14px}
 }
 </style>
 </head>
@@ -235,7 +336,8 @@ footer b{color:var(--scarlet)}
   <div class="spacer"></div>
   <div class="ctl">
     <button class="btn" id="updateCatBtn" title="Fetch the latest SDSU catalog">⟳ Update catalog</button>
-    <button class="btn" id="resetBtn">Reset to advisor plan</button>
+    <button class="btn" id="summerToggle" style="display:flex;align-items:center;gap:6px"><span id="summerToggleIcon" style="font-size:11px;width:28px;height:16px;border-radius:999px;background:var(--muted2);display:inline-flex;align-items:center;padding:2px;transition:background .2s"><span style="width:12px;height:12px;border-radius:50%;background:#fff;display:block;transition:transform .2s;transform:translateX(0)"></span></span> Summer terms</button>
+      <button class="btn" id="resetBtn">Reset to advisor plan</button>
   </div>
 </div>
 
@@ -299,6 +401,7 @@ const reqByKey=Object.fromEntries(D.reqs.map(r=>[r.key,r]));
 const areaByKey=Object.fromEntries(D.areas.map(a=>[a.key,a]));
 const overlayByKey=Object.fromEntries(D.overlays.map(o=>[o.key,o]));
 const PLAN_ID="abby-ib";
+let showSummer=localStorage.getItem("showSummer")==="true";
 // Immediately set url for all courses that have a coid in data.js
 // (courseUrl() needs catoid from D.meta which is already loaded)
 // This runs before courseUrl() is defined, so we inline it here:
@@ -515,12 +618,26 @@ function reqOptions(sel,kind,idx){ let o=`<option value="">— free elective —
 
 function renderYears(){
   const host=document.getElementById("years");
-  host.innerHTML=[1,2,3,4].map(y=>{ const terms=D.plan.filter(t=>t.year===y);
-    let yu=0; terms.forEach(t=>(state.terms[t.id]||[]).forEach(s=>yu+=slotUnits(s)||0));
+  const isSummer=t=>t.id.startsWith("su");
+  host.innerHTML=[1,2,3,4].map(y=>{
+    const allTerms=D.plan.filter(t=>t.year===y);
+    const visTerms=showSummer?allTerms:allTerms.filter(t=>!isSummer(t));
+    let yu=0; allTerms.forEach(t=>(state.terms[t.id]||[]).forEach(s=>yu+=slotUnits(s)||0));
+    const cols=showSummer?"terms":"terms two-col";
     return `<div class="year"><div class="year-h"><span class="yr">Year ${y}</span><span class="yu">${yu} units</span><span class="rule"></span></div>
-      <div class="terms">${terms.map(termCard).join("")}</div></div>`;
+      <div class="${cols}">${visTerms.map(termCard).join("")}</div></div>`;
   }).join("");
+  updateSummerToggleUI();
   bindTerms();
+}
+function updateSummerToggleUI(){
+  const btn=document.getElementById("summerToggle");
+  if(!btn) return;
+  const track=btn.querySelector("span");
+  const thumb=track?track.querySelector("span"):null;
+  if(track) track.style.background=showSummer?"var(--ok)":"var(--muted2)";
+  if(thumb) thumb.style.transform=showSummer?"translateX(12px)":"translateX(0)";
+  btn.title=showSummer?"Hide summer terms":"Show summer terms";
 }
 function termCard(t){ const slots=state.terms[t.id]||[]; let tu=0; slots.forEach(s=>tu+=slotUnits(s)||0);
   const ms=D.milestones[t.id]||[]; const abroad=/Abroad/i.test(t.label);
@@ -786,6 +903,11 @@ function showView(which){
 document.getElementById("tabPlanner").addEventListener("click",()=>showView('planner'));
 document.getElementById("tabChecklist").addEventListener("click",()=>showView('checklist'));
 document.getElementById("addTransfer").addEventListener("click",()=>{ state.transfer.push({code:"",title:"",units:0,req:null,done:true}); save(); renderTransfer(); });
+document.getElementById("summerToggle").addEventListener("click",()=>{
+  showSummer=!showSummer;
+  localStorage.setItem("showSummer",showSummer);
+  renderYears();
+});
 document.getElementById("resetBtn").addEventListener("click",()=>{ if(confirm("Reset the whole plan back to Jason Tan's advisor study plan? Your edits will be lost.")){ state=seedState(); normalizeAssignments(); save(); render(); }});
 document.getElementById("updateCatBtn").addEventListener("click",async()=>{
   const token=prompt("Catalog refresh token (the REFRESH_TOKEN set on the Worker):"); if(!token)return;
