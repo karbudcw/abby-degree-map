@@ -28,8 +28,6 @@ header.mast{padding:30px 20px 8px;max-width:1240px;margin:0 auto}
 .mast h1{font-size:clamp(28px,4.6vw,46px);line-height:1.02;margin:.16em 0 .12em;font-weight:600;letter-spacing:-.01em}
 .mast h1 em{font-style:italic;color:var(--scarlet)}
 .mast p.sub{margin:.2em 0 0;color:var(--muted);max-width:62ch;font-size:14px}
-.mast .tags{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
-.mast .tags span{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
 
 .toggle{max-width:1240px;margin:18px auto 0;padding:0 20px;display:flex;align-items:center;gap:10px}
 .seg{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:3px;box-shadow:var(--shadow)}
@@ -327,7 +325,6 @@ footer b{color:var(--scarlet)}
   <div class="kicker">SDSU · Fowler College of Business · Class of 2030</div>
   <h1>Abby's <em>Degree Map</em></h1>
   <p class="sub">International Business, B.A. — Spanish &amp; Western Europe emphasis.</p>
-  <div class="tags" id="masttags"></div>
 </header>
 
 <div class="toggle">
@@ -533,8 +530,7 @@ function compute(){
 }
 
 /* ---------- render ---------- */
-function render(){ renderMast(); renderDash(); renderTransfer(); renderYears(); renderChecklist(); }
-function renderMast(){ document.getElementById("masttags").innerHTML=[`RedID ${D.meta.redid}`,D.meta.catalogYear+" catalog",D.meta.emphasis,"Advisor: "+D.meta.advisor].map(t=>`<span>${t}</span>`).join(""); }
+function render(){ renderDash(); renderTransfer(); renderYears(); renderChecklist(); }
 
 function renderDash(){
   const c=compute();
