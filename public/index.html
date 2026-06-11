@@ -571,6 +571,11 @@ const GE_CATALOG_URLS={
   "reg1":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
   "reg2":"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=12078",
 };
+// Short course-list notes for choice reqs that don't use a catalog link
+const CHOICE_NOTES={
+  "ethnic":"AAS 100, 101 · AFRAS 170A, 170B · AMIND 140, 141 · CCS 120A, 120B, 141A, 141B",
+  "rp_we":"EUROP 101 or HIST 106",
+};
 // Try to build a catalog URL for any course, including ones without coid, by searching live catalog
 function getCourseUrl(co, code){
   if(!co) return null;
@@ -604,9 +609,14 @@ function slotHtml(termId,s,i){
   // Choice pill with catalog link
   let choicePill="";
   if(isChoice && s.req){
-    const catUrl=GE_CATALOG_URLS[s.req]||"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884";
-    const count=Object.values(byCode).filter(c=>c.reqs.includes(s.req)).length;
-    choicePill=`<a class="pill choice-link" href="${catUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="View approved courses for this requirement">☰ ${count>1?count+' options':'see options'}</a>`;
+    if(CHOICE_NOTES[s.req]){
+      // No catalog link — just show the short course list as a note pill
+      choicePill=`<span class="pill choice-link" style="cursor:default" title="Approved courses for this requirement">${esc(CHOICE_NOTES[s.req])}</span>`;
+    } else {
+      const catUrl=GE_CATALOG_URLS[s.req]||"https://catalog.sdsu.edu/preview_program.php?catoid=12&poid=11884";
+      const count=Object.values(byCode).filter(c=>c.reqs.includes(s.req)).length;
+      choicePill=`<a class="pill choice-link" href="${catUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="View approved courses for this requirement">☰ ${count>1?count+' options':'see options'}</a>`;
+    }
   }
   return `<div class="slot ${cls}" data-term="${termId}" data-i="${i}" draggable="${!empty}">
     <div class="slot-top">
